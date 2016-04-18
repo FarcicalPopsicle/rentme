@@ -280,3 +280,12 @@ md-datepicker {
   /*something goes here*/
   text-align: right;
 }
+
+#profilePage {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+  
+}

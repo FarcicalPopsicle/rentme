@@ -10,7 +10,10 @@
   <h2>Profile</h2>
   <!-- <h2>Hola {{user.name}}</h2> -->
   <md-content>
-  <div class="name" style="float: right;"> Hola {{user.name}}</div>
+  <div class="name" style="float: right;"><h3> Hello {{user.name}}</h3></div>
+  <md-button class="md-primary md-fab md-fab-top-right" style='position: fixed;'>
+       <a href="#/homepage">Home</a>
+   </md-button>
  <!-- <div class="memberSince">{{info.createdAt - new Date()}}</div> -->
  <h3>User Items</h3>
   <!-- <div class="items4rent" ng-repeat="item in info.items4rent">
@@ -19,8 +22,8 @@
     <span>{{item.price}}</span>
   </div> -->
 
-  <div ng-cloak >
-    <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat="item in info.items4rent">
+  <div ng-cloak>
+    <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat="item in info.items4rent" id='profilePage'>
       <div flex-xs flex-gt-xs="50" layout="column"  >
         <md-card md-theme="{{'dark-light-green'}}" md-theme-watch flex="30">
           <md-card-title>
@@ -34,7 +37,7 @@
             </md-card-title-media>
           </md-card-title>
           <md-card-actions layout="row" layout-align="end center">
-            <md-button ng-click='deleteItem(item)'>Delete Item</md-button>
+            <md-button class='md-primary md-raised' ng-click='deleteItem(item)'>Delete Item</md-button>
           </md-card-actions>
        </md-card>
       </div>
@@ -51,6 +54,7 @@
     <span>{{item.price}}</span>
   </div>
 </div> -->
+
   <div ng-cloak >
     <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat="item in info.itemsRenting">
       <div flex-xs flex-gt-xs="50" layout="column"  >
@@ -77,6 +81,3 @@
   </md-content>
 </div>
 
- <md-button class="md-primary md-fab md-fab-bottom-right" style='position: fixed;'>
-      <a href="#/homepage">Home</a>
-  </md-button>

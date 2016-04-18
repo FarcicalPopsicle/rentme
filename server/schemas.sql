@@ -12,7 +12,7 @@ CREATE TABLE items (
 );
 
 CREATE TABLE address (
-  id int NOT NULL AUTO_INCREMENT,
+  id int not NULL AUTO_INCREMENT,
   street varchar(50),
   number int,
   city varchar(50),

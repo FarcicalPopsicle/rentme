@@ -11,10 +11,10 @@
       <span>{{item.name}}  {{item.description}}</span>
       <button ng-click='deleteItem(item)'> Delete Item</button>
     </li> -->
-
+<div>
   <div class="checkOutFinal">
     <h1>Hello {{checkOutItems.id}}</h1>
-    <h2 id="currency-default">Total: {{getSum() | currency}}</h2><br>
+    <h2 id="currency-default">Total: {{getSum() | currency}}</h2>
     <md-button class="btn waves-effect md-primary" ng-click='processCheckOut()'>CheckOut
     </md-button>
   </div>
@@ -45,7 +45,7 @@
       </div>
     </md-content>
   </div>
-
+</div>
 
 
    <md-button class="md-primary md-fab md-fab-bottom-right" style='position: fixed;'>

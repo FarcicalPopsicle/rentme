@@ -62,11 +62,11 @@
       <!-- Location: <input type = "text" ng-model = 'location'> -->
         <md-input-container flex layout-align="end center">
           <label>Location</label>
-          <input type="text" ng-model = 'location' required/>
+          <input type="text" ng-model = 'city' required/>
         </md-input-container>
         <md-input-container flex layout-align="end center">
           <label>Item name</label>
-          <input type="text" ng-model = 'item' required/>
+          <input type="text" ng-model = 'item'/>
         </md-input-container>
       <!-- <button> Search </button> -->
       <md-button type='submit' class="md-primary md-raised" layout-align="end center">Search</md-button>
@@ -83,14 +83,14 @@
             <span class="md-display-1">{{item.name}}</span>
             <span class="md-title">description</span>
             <span class="md-subhead">{{item.description}}</span>
+            <span class="md-subhead">{{item.city}}</span>
           </md-card-title-text>
           <md-card-title-media>
-
             <div class="md-media-md card-media" layout-align="end center">{{item.price | currency}}</div>
           </md-card-title-media>
         </md-card-title>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button ng-click='addToCheckOut(item)' class="md-primary md-raised">Add cart</md-button>
+          <md-button ng-click='addToCheckOut(item)' class="md-primary md-raised">Add to cart</md-button>
         </md-card-actions>
       </md-card>
     </div>

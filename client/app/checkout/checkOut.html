@@ -1,35 +1,27 @@
 
 
 <div id = "signup" style='padding: 40px;'> 
-  <h2>Cart</h2>
   <md-content>
-  <h3>Checkout</h3>
-
-<!-- <div class="itemList">
-  <caption>Check Out Page</caption> -->
-    <!-- <li ng-repeat='item in checkOutItems track by $index'>
-      <span>{{item.name}}  {{item.description}}</span>
-      <button ng-click='deleteItem(item)'> Delete Item</button>
-    </li> -->
-<div>
-  <div class="checkOutFinal">
+  <div class="checkOutFinal" style="float: right; padding-right: 10%">
     <h1>Hello {{checkOutItems.id}}</h1>
-    <h2 id="currency-default">Total: {{getSum() | currency}}</h2>
-    <md-button class="btn waves-effect md-primary" ng-click='processCheckOut()'>CheckOut
+    <h2 id="currency-default">Total: {{getSum() | currency}}</h2><br>
+    <md-button class="md-primary md-raised" ng-click='processCheckOut()'>CheckOut
     </md-button>
   </div>
+  <h3>Checkout</h3>
 
   <div ng-cloak class='center'>
+
     <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat='item in checkOutItems track by $index'>
       <div flex-xs flex-gt-xs="50" layout="column"  >
-        <md-card md-theme="{{'dark-light-green'}}" md-theme-watch flex="30">
+        <md-card md-theme="{{'dark-light-green'}}" md-theme-watch flex="20">
           <md-card-title>
             <md-card-title-text>
-
               <span class="md-display-1">{{item.name}}</span>
               <span class="md-subhead">{{item.price | currency}}</span>
               <span class="md-title">description</span>
               <span class="md-subhead">{{item.description}}</span>
+              <span class="md-subhead" layout-align="start">{{item.city}}</span>
             </md-card-title-text>
             <md-card-title-media>
               <div class="md-media-md card-media"></div>
@@ -47,9 +39,10 @@
   </div>
 </div>
 
-
-   <md-button class="md-primary md-fab md-fab-bottom-right" style='position: fixed;'>
-      <a href="#/homepage">Home</a>
-  </md-button>
 </md-content>
+<md-button class="md-primary md-fab md-fab-top-right md-hue-2" style='margin-top: 50px;'>
+    <a href="#/homepage" style = style='font-size: 85%; color: white'>Home</a>
+  </md-button>
 </div>
+
+

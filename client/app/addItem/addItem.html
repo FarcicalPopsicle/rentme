@@ -2,7 +2,7 @@
 <div id = "signup" style='padding: 40px;'> 
   <h2>Add Item</h2>
   <md-content>
-  <h3>Item for Rent</h3>
+  <h3 style='padding-left: 2%'>Item for Rent</h3>
   <form name="addItemForm" ng-submit='addItem()'>
 
     <!-- <input type="hidden" value='{{user.id}}'></input>
@@ -29,11 +29,17 @@
       <input type="number" ng-model = 'itemForm.price' required/>
     </md-input-container>
 
-    <button>Add Item</button>
+    <md-input-container flex>
+      <div class="space-top text-center">
+        <md-button type='submit' ng-disabled="form-register.$invalid" class="md-raised md-primary btn done">
+          <i class="material-icons left"></i> Add Item
+        </md-button>
+      </div>
+    </md-input-container>
   </form>
-</md-content>
-  <md-button class="md-primary md-fab md-fab-bottom-right" style='position: fixed;'>
-    <a href="#/homepage">Home</a>
-  </md-button>
+  </md-content>
 
 </div>
+<md-button class="md-primary md-fab md-fab-top-right md-hue-2" style='margin-top: 50px;'>
+  <a href="#/homepage" style='font-size: 85%; color: white'>Home</a>
+</md-button>

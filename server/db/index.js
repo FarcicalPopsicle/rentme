@@ -5,7 +5,6 @@ var connection = mysql.createConnection({
   password: '',
   database: 'ecommerce'
 });
-
 connection.connect();
 
 module.exports = connection;

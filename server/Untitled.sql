@@ -1,4 +1,4 @@
-
+use ecommerce;
 select i.id,i.name,i.description,i.price,i.availability from items i inner join users s on i.id = s.item_Id inner join address a on a.id  = s.address_id and a.postalcode = 94111 where i.name = "tenis";
 
 
@@ -8,6 +8,10 @@ select * from items;
 select * from users;
 select * from user_items;
 select * from items_renting;
+select * from address;
+
+
+delete from address where id = 6;
 
 insert into user_items (user_Id,item_Id) values ((select id from users where name = 'Allice'),(select id from items where name = 'tennis'));
 

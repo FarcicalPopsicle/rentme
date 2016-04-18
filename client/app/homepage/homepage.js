@@ -17,7 +17,7 @@ var app = angular.module('e-Commer.search', ['ngMaterial'])
 
 });
 
-app.controller('SearchController', function ($scope,$location, $window, searchFactory, Auth,$mdDialog) {
+app.controller('SearchController', function ($scope,$location, $window, searchFactory, Auth,$mdDialog,$mdToast) {
   // this is for SEARCH FORM after LOGIN
   $scope.allItems = {};
   $scope.checkOutItems = searchFactory.checkOutItems;
@@ -43,6 +43,7 @@ app.controller('SearchController', function ($scope,$location, $window, searchFa
     var checkoutData = {id:$scope.user.id, items:$scope.checkOutItems};
     searchFactory.sendToSubCtrl(checkoutData).then(function(response){
     });
+    $scope.showSimpleToast();
     $location.path('/homepage');
   }
 
@@ -61,7 +62,7 @@ app.controller('SearchController', function ($scope,$location, $window, searchFa
 
   $scope.getFormValue = function() {
     $scope.randItemsData = {};
-    $scope.allItems.location = $scope.location;
+    $scope.allItems.city = $scope.city;
     $scope.allItems.item = $scope.item;
     searchFactory.getSearchItems($scope.allItems).then(function(items){
       $scope.randItemsData = items;
@@ -114,7 +115,37 @@ app.controller('SearchController', function ($scope,$location, $window, searchFa
   };
 
 
+var last = {
+      bottom: true,
+      top: false,
+      left: false,
+      right: true
+    };
+  $scope.toastPosition = angular.extend({},last);
+  $scope.getToastPosition = function() {
+    sanitizePosition();
+    return Object.keys($scope.toastPosition)
+      .filter(function(pos) { return $scope.toastPosition[pos]; })
+      .join(' ');
+  };
+  function sanitizePosition() {
+    var current = $scope.toastPosition;
+    if ( current.bottom && last.top ) current.top = false;
+    if ( current.top && last.bottom ) current.bottom = false;
+    if ( current.right && last.left ) current.left = false;
+    if ( current.left && last.right ) current.right = false;
+    last = angular.extend({},current);
+  }
 
+ $scope.showSimpleToast = function() {
+    var pinTo = $scope.getToastPosition();
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Processing your payment!')
+        .position(pinTo )
+        .hideDelay(3000)
+    );
+  };
 
 
 
@@ -137,6 +168,7 @@ app.factory('searchFactory', function($http) {
         url: '/api/getSearchItems',
         data: inputValue
       }).then(function(res) {
+        console.log(res.data);
         return res.data;
       });
     }

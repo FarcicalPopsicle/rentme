@@ -48,15 +48,8 @@
 <!-- </div> -->
 <md-content>
   <h3>User Renting Items</h3>
-<!--   <div class="itemsRenting" ng-repeat="item in info.itemsRenting">
-    <span>{{item.name}}</span>
-    <span>{{item.description}}</span>
-    <span>{{item.price}}</span>
-  </div>
-</div> -->
-
   <div ng-cloak >
-    <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat="item in info.itemsRenting">
+    <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat="item in info.itemsRenting" id='profilePage'>
       <div flex-xs flex-gt-xs="50" layout="column"  >
         <md-card md-theme="{{'dark-light-green'}}" md-theme-watch flex="30">
           <md-card-title>

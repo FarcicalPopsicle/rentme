@@ -76,6 +76,28 @@ CREATE TABLE cart (
 
 alter table users add FOREIGN KEY (cart_Id) REFERENCES cart(id) ON DELETE CASCADE;
 
+CREATE TABLE reviews (
+  id int NOT NULL AUTO_INCREMENT,
+  items_Id int NOT NULL,
+  users_Id int NOT NULL,
+  user_experience varchar(255) NOT NULL DEFAULT '',
+  item_rating int(6) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (items_Id) REFERENCES items(id),
+  FOREIGN KEY (users_Id) REFERENCES users(id)
+);
+
+CREATE TABLE feedback (
+  id int NOT NULL AUTO_INCREMENT,
+  users_Id_rentee int NOT NULL,
+  users_Id_renter int NOT NULL,
+  experience varchar(255) NOT NULL DEFAULT '',
+  rating int(6) NOT NULL,
+  renter_or_rentee boolean NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (users_Id_rentee) REFERENCES users(id),
+  FOREIGN KEY (users_Id_renter) REFERENCES users(id)
+);
 
 -- Query for dummy data
 insert into items (name,description,price) values ('laptop','descLaptop',14),('tennis','descTennis',15),('phone','descPhone',10),('computer','descComputer',12),('watch','descWatch',9);

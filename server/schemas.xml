@@ -189,7 +189,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="400" y="563" name="renter_feedback">
+<table x="400" y="563" name="feedback">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>

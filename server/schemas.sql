@@ -24,13 +24,16 @@ CREATE TABLE address (
 
 CREATE TABLE users (
   id int NOT NULL AUTO_INCREMENT,
+  googleid varchar(30) NOT NULL,
   name  varchar(50)   NOT NULL,
+  familyname  varchar(50)   NOT NULL,
+  givenname  varchar(50)   NOT NULL,
   email  varchar(50)   NOT NULL,
-  address_id  int   NOT NULL,
-  phoneNumber  varchar(25)   NOT NULL,
-  birthday  date   NOT NULL,
+  address_id int,
+  phoneNumber varchar(25),
+  birthday  date,
   type  varchar(30) DEFAULT 'customer',
-  password  varchar(30)   NOT NULL,
+  password  varchar(30),
   cart_Id  int,
   PRIMARY KEY (id),
   FOREIGN KEY (address_id) 

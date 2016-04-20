@@ -45,7 +45,7 @@ var last = {
     Item.addOne(info)
       .then(function () {
         $scope.showSimpleToast();
-        $location.path('/items');
+        $location.path('/addImage');
       })
       .catch(function (error) {
         console.error(error);

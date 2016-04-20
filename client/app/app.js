@@ -45,6 +45,10 @@ app.config(function ($routeProvider,$httpProvider) {
       controller: 'profileCtrl'
       // authenticate: true
     })
+    .when('/addImage', {
+      templateUrl: 'app/addImage/addImage.html',
+      controller: 'addImageController',
+    })
     .otherwise({
       redirectTo: '/homepage'
     });

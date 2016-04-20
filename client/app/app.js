@@ -7,6 +7,7 @@ var app = angular.module('e-Commer', [
   'e-Commer.services',
   'e-Commer.addItem',
   'e-Commer.profile',
+  'e-Commer.reviews',
   // 'e-Commer.checkOut',
   'ngMaterial',
   'ngMdIcons',

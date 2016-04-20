@@ -104,14 +104,33 @@ CREATE TABLE feedback (
 );
 
 -- Query for dummy data
+
+-- add items
 insert into items (name,description,price) values ('laptop','descLaptop',14),('tennis','descTennis',15),('phone','descPhone',10),('computer','descComputer',12),('watch','descWatch',9);
+
+-- add addresses
 insert into address (street, number, city, postalcode) values ('Market St', 123, 'San Francisco',94102),('Market St', 12123, 'San Francisco',94102),('Montgomery St', 123, 'San Francisco',94101),('Kearny St', 246, 'San Francisco',94108),('Battery st',1015,'San Francisco',94111);
+
+-- add user Allice
 insert into users (name,email,address_id,phoneNumber,birthday,type,password) values ('Allice','allice@allice.com', (SELECT id FROM address WHERE postalcode=94111) ,48343432, '2015-6-9' ,'admin','password');
+
+-- add user John
 insert into users (name,email,address_id,phoneNumber,birthday,type,password) values ('John','john@john.com', (SELECT id FROM address WHERE postalcode=94101) ,48343432, '2015-6-9' ,'admin','password');
+
+-- add user Foo
 insert into users (name,email,address_id,phoneNumber,birthday,type,password) values ('Foo','john@john.com', (SELECT id FROM address WHERE postalcode=94102 and number = 123) ,48343432, '2015-6-9' ,'admin','password');
+
+-- add user Bob
 insert into users (name,email,address_id,phoneNumber,birthday,password) values ('Bob','bob@bob.com', (SELECT id FROM address WHERE postalcode=94108) ,48343432, '2015-6-9','password');
+
+-- add user Ann
 insert into users (name,email,address_id,phoneNumber,birthday,password) values ('Ann','ann@ann.com', (SELECT id FROM address WHERE postalcode=94102 and number = 12123) ,48343432, '2015-6-9','password');
 
+-- add item_user relationship
+INSERT INTO user_items (user_Id, item_Id) VALUES (1, 1), (2, 2), (3, 3), (4, 4), (1, 5);
+
+-- add reivews
+INSERT INTO reviews (items_Id, users_Id, user_experience, item_rating) VALUES (1, 1, 'good', 4), (1, 2, 'fine', 3), (4, 3, 'bad', 0), (5, 5, 'the worst', 1), (2, 3, 'eh', 5), (3, 1, 'I just don\'t understand', 3);
 -- Query to retrieve items info.
 -- insert into users (name,email,address_id,phoneNumber,birthday,type,password,item_Id) values ('John','john@john.com', (SELECT id FROM address WHERE postalcode=94101) ,48343432, '2015-6-9' ,'admin','password', (SELECT id FROM items WHERE name='laptop'));
 -- select i.id,i.name,i.description,i.price,i.availability

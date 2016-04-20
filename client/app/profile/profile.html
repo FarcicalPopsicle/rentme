@@ -1,14 +1,5 @@
-
-
- <!-- /*
-   THings this page needs:
-   1. user info: id, and name
-   2. Items: their items for rent and items the user is current renting
-   assuming that everything is on $scope.info
-  */ -->
 <div id = "signup" style='padding: 40px;'> 
   <h2>Profile</h2>
-  <!-- <h2>Hola {{user.name}}</h2> -->
   <md-content>
   <div class="name" style="float: right;"><h3> Hello {{user.name}}</h3></div>
   <md-button class="md-primary md-fab md-fab-top-right" style='position: fixed;'>
@@ -16,11 +7,6 @@
    </md-button>
  <!-- <div class="memberSince">{{info.createdAt - new Date()}}</div> -->
  <h3>User Items</h3>
-  <!-- <div class="items4rent" ng-repeat="item in info.items4rent">
-    <span>{{item.name}}</span>
-    <span>{{item.description}}</span>
-    <span>{{item.price}}</span>
-  </div> -->
 
   <div ng-cloak>
     <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat="item in info.items4rent" id='profilePage'>
@@ -31,6 +17,7 @@
               <span class="md-display-1">{{item.name}}</span>
               <span class="md-title">description</span>
               <span class="md-subhead">{{item.description}}</span>
+              <div reviews></div>
             </md-card-title-text>
             <md-card-title-media>
               <div class="md-media-md card-media" ayout-align="end center">{{item.price | currency}}</div>

@@ -41,18 +41,15 @@ var last = {
 
 
   $scope.signin = function () {
-    console.log($scope.userLogin.username);
     //call the signin factory method and pass the user form
     Auth.signin($scope.userLogin)
       .then(function (data) {
-        console.log("data signin res ",data.user);
         if(data === 404){
           $scope.showSimpleToast("User or password incorrect!");
           $location.path('/signin');
           $scope.userLogin = {};
         } else {
           $window.localStorage.setItem('com.e-Commer', data.token);
-          console.log('User login', data.user);
           $scope.user = data.user[0];
           Auth.user = $scope.user;
           $scope.showSimpleToast("Hello "+$scope.user.name);

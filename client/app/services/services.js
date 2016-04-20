@@ -27,7 +27,6 @@ angular.module('e-Commer.services', [])
           data: item
         })
         .then(function (resp) {
-          console.log(resp);
           return resp;
         });
       },
@@ -59,7 +58,6 @@ angular.module('e-Commer.services', [])
           data: user
         })
         .then(function (resp) {
-          console.log(resp);
           // this.user = resp.data;
           return resp;
         })
@@ -117,7 +115,6 @@ angular.module('e-Commer.services', [])
         })
         .then(function (resp) {
           // resp.data.user[0]
-          console.log('User info',resp);
           callback(resp.data);
         })
         .catch(function(err){

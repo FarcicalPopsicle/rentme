@@ -80,23 +80,19 @@ app.config(function ($routeProvider,$httpProvider) {
 
   //check to see if user is already signed in using passport 
   Auth.signin(function (data) {
-      console.log("data signin res ",data.user);
       if(data === '404'){
         // $rootScope.showSimpleToast("User or password incorrect!");
         $location.path('/signin');
         $rootScope.userLogin = {};
       } else {
         $window.localStorage.setItem('com.e-Commer', data.token);
-        console.log('User login', data.user);
         var user = data.user;
         $rootScope.user = user;
         Auth.user = user;
         $location.path('/homepage');
       }
     });
-  // .catch(function (error) {
-  //   console.error(error);
-  // });
+
   $rootScope.$on('$routeChangeStart', function (evt, next, current) {
     if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
       $location.path('/homepage');

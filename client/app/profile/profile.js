@@ -18,9 +18,8 @@ app.factory('profileFac', function($http) {
         params: {id:user}
       })
       .then(function (resp) {
-        console.log(resp.data, 'FOoooooo');
         return resp.data;
-      })
+      });
     }
-  }
+  };
 });

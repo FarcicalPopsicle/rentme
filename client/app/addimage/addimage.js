@@ -1,9 +1,10 @@
 // David
 // Controller for adding items
-angular.module('e-Commer.addImage', ['ngMaterial'])
-.controller('addImageController', function ($scope, $window, $location) {
+angular.module('e-Commer.addImage', ['ngMaterial', 'ngFileUpload'])
+.controller('addImageController', function ($scope, Upload, $timeout, $window, $location) {
 
-  $scope.uploadFiles = function() {
+  $scope.uploadFiles = function(files) {
+    $scope.files = files;
     console.log('UPLOAD FILES CALLED');
   };
 

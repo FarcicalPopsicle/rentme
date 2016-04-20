@@ -26,8 +26,15 @@ module.exports = {
       callback(err, results);
     });
   },
+  findUserById: function(userid, callback) {
+    var query = 'SELECT id, name FROM users WHERE id = ' + userid;
+    db.query(query, function(err, results) {
+      callback(err, results);
+    });
+  },
   findOrCreate: function(profile, callback) {
-    var query = 'Select id, name from Users where googleid = "'+ profile.id +'" LIMIT 1';
+    var findQuery = 'Select id, name from Users where ';
+    var query = findQuery + 'googleid = "'+ profile.id +'" LIMIT 1';
     db.query(query, function(err, results) {
       if (err) { return callback(err); }
       if (results.length) {

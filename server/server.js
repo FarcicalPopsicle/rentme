@@ -29,7 +29,13 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(user, done) {
-  done(null, user);
+  User.findUserById(user.id, function(err, results) {
+    if (err) { 
+      console.log('User not found :-(');
+      return null; 
+    }
+    done(null, results);
+  })
 });
 
 /* Static */

@@ -110,20 +110,19 @@ angular.module('e-Commer.services', [])
         });
       },
       //signin method for make a request and send the user info to the server
-      signin : function (user) {
-        console.log('Client---------',user);
-        return $http({
+      signin : function (callback) {
+        $http({
           method: 'POST',
-          url: '/signin',
-          data: user
+          url: '/signin'
         })
         .then(function (resp) {
           // resp.data.user[0]
-          console.log('User info',resp.data);
-          return resp.data;
+          console.log('User info',resp);
+          callback(resp.data);
         })
         .catch(function(err){
           console.log(err);
+          return '404';
         });
       },
 

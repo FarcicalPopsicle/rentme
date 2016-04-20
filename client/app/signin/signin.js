@@ -45,7 +45,7 @@ var last = {
     //call the signin factory method and pass the user form
     Auth.signin($scope.userLogin)
       .then(function (data) {
-        console.log("data signin res ",data)
+        console.log("data signin res ",data.user);
         if(data === 404){
           $scope.showSimpleToast("User or password incorrect!");
           $location.path('/signin');
@@ -64,3 +64,4 @@ var last = {
       });
   };
 });
+

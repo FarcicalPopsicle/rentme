@@ -68,7 +68,7 @@ app.config(function ($routeProvider,$httpProvider) {
   };
   return attach;
 })
-.run(function ($rootScope, $location, Auth) {
+.run(function ($window, $rootScope, $location, Auth) {
   // here inside the run phase of angular, our services and controllers
   // have just been registered and our app is ready
   // however, we want to make sure the user is authorized
@@ -76,6 +76,27 @@ app.config(function ($routeProvider,$httpProvider) {
   // when it does change routes, we then look for the token in localstorage
   // and send that token to the server to see if it is a real user or hasn't expired
   // if it's not valid, we then redirect back to signin/signup
+
+
+  //check to see if user is already signed in using passport 
+  Auth.signin(function (data) {
+      console.log("data signin res ",data.user);
+      if(data === '404'){
+        // $rootScope.showSimpleToast("User or password incorrect!");
+        $location.path('/signin');
+        $rootScope.userLogin = {};
+      } else {
+        $window.localStorage.setItem('com.e-Commer', data.token);
+        console.log('User login', data.user);
+        var user = data.user;
+        $rootScope.user = user;
+        Auth.user = user;
+        $location.path('/homepage');
+      }
+    });
+  // .catch(function (error) {
+  //   console.error(error);
+  // });
   $rootScope.$on('$routeChangeStart', function (evt, next, current) {
     if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
       $location.path('/homepage');

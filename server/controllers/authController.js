@@ -2,22 +2,17 @@ var User = require('../models/userModel.js');
 var jwt = require('jwt-simple');
 
 module.exports = {
+  //Not used anymore, uses passport authenticate instead
   signin: function (req, res, next) {
-    var user = req.body;
-    User.users.get(user, function(err, results){
-      if (!err) {
-        console.log('signin results ',results);
-        if(results.length === 0){
-          res.json(404);
-        } else {
-          var token = jwt.encode(user, 'secret');
-          res.json({token: token, user: results});
-        }
-      }
-      else {
-        res.json(err);
-      }
-    });
+    if (req.user) {
+      var token = jwt.encode(req.user, 'secret');
+      res.json({ 
+        'token': token,
+        'user': req.user
+      });
+    } else {
+      res.json('404');
+    }
   },
   signup: function (req, res, next) {
     var user = req.body;

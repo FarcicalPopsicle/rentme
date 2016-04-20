@@ -31,6 +31,19 @@ angular.module('e-Commer.services', [])
         });
       },
 
+      addImages: function(image) {
+        console.log('add Images was called in services.js');
+        return $http({
+          method: 'POST',
+          url: '/items/addItemImage',
+          data: image,
+        })
+        .then(function(res) {
+          console.log(res);
+          return res;
+        });
+      },
+
       deleteOne: function(item) {
         return $http({
           method: 'POST',

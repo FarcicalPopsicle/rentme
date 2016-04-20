@@ -13,6 +13,9 @@ module.exports = {
   //     }
   //   });
   // },
+  addItemImage: function(req, res, next) {
+    console.log('ADD ITEM IMAGE CALLED ON BACKEND', req.body);
+  },
   
   addItem: function (req, res, next) {
     console.log('Inside addItem method');
@@ -23,6 +26,6 @@ module.exports = {
         res.json(err);
       }
     });
-  }
+  },
 
 };

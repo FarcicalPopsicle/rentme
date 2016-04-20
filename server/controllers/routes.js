@@ -15,6 +15,7 @@ module.exports = function(app, passport) {
   app.post('/signin', authController.signin);
   app.post('/api/getSearchItems', homeController.search);
   app.post('/items/add', itemController.addItem);
+  app.post('/items/addItemImage', itemController.addItemImage);
   app.get('/api/getAllUserItem', profileController.getUserItems);
   app.post('/homepage/cart', checkoutController.setItems);
 

@@ -31,6 +31,12 @@
               <span class="md-display-1">{{item.name}}</span>
               <span class="md-title">description</span>
               <span class="md-subhead">{{item.description}}</span>
+              <div ng-repeat="review in item.reviews">
+                <hr />
+                <div class="md-subhead">Review: {{review.user_experience}}</div>
+                <div class="md-subhead">Rating: {{review.item_rating}}/5</div>
+                <div class="md-subhead">Review by: {{review.user}}</div>
+              </div>
             </md-card-title-text>
             <md-card-title-media>
               <div class="md-media-md card-media" ayout-align="end center">{{item.price | currency}}</div>

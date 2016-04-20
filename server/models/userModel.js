@@ -1,6 +1,4 @@
 var db = require('../db/index.js');
-// var bcrypt = require('bcrypt-nodejs');
-// var Promise = require('bluebird');
 
 module.exports = {
   users: {
@@ -11,7 +9,6 @@ module.exports = {
       });
     },
     post: function (user, callback) {
-//SHA1('12345')
       var queryAddress = 'insert into address (street, number, city, postalcode) SELECT * FROM (select "'+ user.address.street +'",'+user.address.number+',"'+user.address.city+'",'+user.address.postalcode+') AS temp WHERE NOT EXISTS (SELECT id FROM address WHERE postalcode= '+ user.address.postalcode+' and number = '+user.address.number+')LIMIT 1';
       db.query(queryAddress, function(err, results) {
         var queryUser = 'insert into users (name,email,address_id,phoneNumber,birthday,password) values ("'+ user.name +'","'+user.email+'", (SELECT id FROM address WHERE postalcode= '+ user.address.postalcode+' and number = '+user.address.number+'),"'+user.phoneNumber+'","'+user.birthday+'" ,"'+user.password+'")';
@@ -27,6 +24,30 @@ module.exports = {
     var query = 'Select token from Users where username = "'+ user.username +'"';
     db.query(query, function(err, results) {
       callback(err, results);
+    });
+  },
+  findOrCreate: function(profile, callback) {
+    var query = 'Select id, name from Users where googleid = "'+ profile.id +'" LIMIT 1';
+    db.query(query, function(err, results) {
+      if (err) { return callback(err); }
+      if (results.length) {
+        callback(null, results);
+      } else {
+        query = 'INSERT INTO Users SET ';
+        query += 'googleid = "' + profile.id + '", ';
+        query += 'name = "' + profile.displayName + '", ';
+        query += 'familyName = "' + profile.name.familyName + '", ';
+        query += 'givenName = "' + profile.name.givenName + '", ';
+        query += 'email = "' + profile.emails[0].value + '" ';
+        db.query(query, function(err, results) {
+          var query = 'Select id, name from Users where googleid = "'+ profile.id +'" LIMIT 1';
+          db.query(query, function(err, results) {
+            if (err) { return callback(err); }
+            callback(null, results);
+          });
+        });
+      }
+
     });
   }
 };

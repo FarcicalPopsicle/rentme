@@ -1,7 +1,8 @@
 <div id = "addImage" style='padding: 40px;'> 
   <md-content>
-    <body ng-app="fileUpload" ng-controller="MyCtrl">
-      <h4>Add Images</h4>
+    <body>
+    <!-- <body ng-app="fileUpload" ng-controller="MyCtrl"> -->
+      <h4 ng-click="checkController()">Click this div to test the controller</h4>
       <button ngf-select="uploadFiles($files, $invalidFiles)" multiple
               accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
           Select Files</button>

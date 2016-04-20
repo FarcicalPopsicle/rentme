@@ -47,7 +47,7 @@ app.config(function ($routeProvider,$httpProvider) {
     })
     .when('/addImage', {
       templateUrl: 'app/addImage/addImage.html',
-      controller: 'addImageController',
+      controller: 'addItemController',
     })
     .otherwise({
       redirectTo: '/homepage'

@@ -21,6 +21,7 @@ angular.module('e-Commer.services', [])
     return {
       // add an item from a user
       addOne: function(item) {
+        console.log('Item factory: addOne called with item: ', item);
         return $http({
           method: 'POST',
           url: '/items/add',

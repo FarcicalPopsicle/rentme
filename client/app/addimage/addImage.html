@@ -3,11 +3,10 @@
     <body>
     <!-- <body ng-app="fileUpload" ng-controller="MyCtrl"> -->
       <h4 ng-click="checkController()">Click this div to test the controller</h4>
-      <button ngf-select="uploadFiles($files, $invalidFiles)" multiple
+      <button ngf-select="addImageToItem($files, $invalidFiles)" multiple
               accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
           Select Files</button>
       <br><br>
-      Files:
       <ul>
         <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
           <span class="progress" ng-show="f.progress >= 0">
@@ -20,8 +19,6 @@
       </ul>
       {{errorMsg}}
     </body>
-
   </md-content>
-
-
+    <button ng-Click="uploadItem()">Rent your item!</button>
 </div>

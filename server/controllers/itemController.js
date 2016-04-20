@@ -13,12 +13,10 @@ module.exports = {
   //     }
   //   });
   // },
-  addItemImage: function(req, res, next) {
-    console.log('ADD ITEM IMAGE CALLED ON BACKEND', req.body);
-  },
+
   
   addItem: function (req, res, next) {
-    console.log('Inside addItem method');
+    console.log('Inside addItem method; request body: ', req.body);
     Items.items(req.body,function(err, results) {
       if (!err) { 
         res.json(201);
@@ -27,5 +25,4 @@ module.exports = {
       }
     });
   },
-
 };

@@ -1,5 +1,6 @@
 // David
 // Controller for adding items
+window.item = {};
 
 angular.module('e-Commer.addItem', ['ngMaterial'])
 .controller('addItemController', function ($scope, $window, $location, Item, Auth,$mdToast) {
@@ -20,6 +21,7 @@ var last = {
       .filter(function(pos) { return $scope.toastPosition[pos]; })
       .join(' ');
   };
+
   function sanitizePosition() {
     var current = $scope.toastPosition;
     if ( current.bottom && last.top ) current.top = false;
@@ -40,15 +42,42 @@ var last = {
   };
 
 
-  $scope.addItem = function () {
-    var info = {id:$scope.user.id, item:$scope.itemForm};
-    Item.addOne(info)
-      .then(function () {
-        $scope.showSimpleToast();
-        $location.path('/addImage');
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+  $scope.createItem = function() {
+    item = {id:$scope.user.id, item:$scope.itemForm};
+    console.log('item created: ', item);
+    $location.path('/addImage');
+
+  };
+
+  //DELETE THIS LATER DELETE THIS LATER
+  $scope.checkController = function() {
+    console.log('CONTROLLER WORKS', 'item is: ', item);
+  };
+
+  // $scope.addItem = function () {
+  //   var info = {id:$scope.user.id, item:$scope.itemForm};
+  //   Item.addOne(info)
+  //     .then(function () {
+  //       $scope.showSimpleToast();
+  //       $location.path('/addImage');
+  //     })
+  //     .catch(function (error) {
+  //       console.error(error);
+  //     });
+  // };
+  $scope.uploadItem = function() {
+    console.log('upload item called');
+    Item.addOne(item);
+    item = {};
+    //add a redirect here
+  };
+
+  $scope.addImageToItem = function(files) {
+    $scope.files = files;
+    console.log('UPLOAD FILES CALLED');
+    console.log('the files are: ', files);
+    if (files && files.length) {
+      item.item.photos = files;
+    }
   };
 });

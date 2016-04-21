@@ -17,35 +17,30 @@ module.exports = {
   // },
   addItem: function (req, res, next) {
     var file = req.files.file;
-
-    console.log('Inside server-side itemController: addItem method. The file: ', file);
-    
     var userId = req.body.userid;
     var fileType = req.files.file.type;
+    var itemDetails = req.body;
     var fileExtensions = {
       'image/jpeg': '.jpg',
     };
 
-    var newFileName = function() {
+    var makeNewFileName = function() {
       return Math.random().toString(36).substring(3) + fileExtensions[fileType];
     };
 
     var makePath = function() {
-      return './client/assets/images/' + userId + '/' + newFileName();
+      return './client/assets/images/' + userId + '/' + makeNewFileName();
     };
 
     var storeImage = function() {
       var oldPath = file.path;
-      var newPath = makePath();
       console.log('old path: ', newPath, 'new path: ', newPath);
       fs.move(oldPath, newPath, function (err) {
-        if (err) { return console.error(err); }
-        console.log('file moved to ', newPath);
+        if (err) { 
+          return console.error(err); 
+        }
+        item.photos.push(newPath);
       });
-    };
-
-    var storePath = function() {
-      //add to db
     };
 
     if (!fileExtensions.hasOwnProperty(fileType)) {
@@ -53,65 +48,28 @@ module.exports = {
       return;
     }
 
+    var newPath = makePath();
+
+    var item = {
+      userid: itemDetails.userid,
+      name: itemDetails.name,
+      description: itemDetails.description,
+      price: itemDetails.price,
+      photos: [],
+    };
+
     storeImage();
 
+    //db stuff
 
-    // var pathToCreate = './server/assets/images/' + userid + '/';
-    // var writePath = './server/assets/images/' + userid + '/' + 'otherImage.jpg';
-
-    // mkdirp(pathToCreate, function(err) {
-    //   if (err) {
-    //     console.log('error creating path: ', err);
-    //   } else {
-    //     console.log('--------> NEW PATH CREATED <----------');
-    //     fs.writeFile(writePath, photo, function(err) {
-    //       if (err) {
-    //         console.log('error saving image: ', err);
-    //       } else {
-    //         console.log('image saved to: ', writePath);
-    //       }
-    //     });     
-    //   }
-  // this zombie addItem works, but receives an object representing a file, not the binary
-  // addItem: function (req, res, next) {
-  //   var photo = req.body.item.photos[0];
-  //   var userid = req.body.id;
-  //   console.log('Inside addItem method; photo: ', photo);
-
-  //   var pathToCreate = './server/assets/images/' + userid + '/';
-  //   var writePath = './server/assets/images/' + userid + '/' + 'otherImage.jpg';
-
-  //   mkdirp(pathToCreate, function(err) {
-  //     if (err) {
-  //       console.log('error creating path: ', err);
-  //     } else {
-  //       console.log('--------> NEW PATH CREATED <----------');
-  //       fs.writeFile(writePath, photo, function(err) {
-  //         if (err) {
-  //           console.log('error saving image: ', err);
-  //         } else {
-  //           console.log('image saved to: ', writePath);
-  //         }
-  //       });     
-  //     }
-  //   });
-
-    // fs.writeFile(path, req.body.item.photos[0], function(err) {
-    //   if (err) {
-    //     console.log('error saving image: ', err);
-    //   } else {
-    //     console.log('image saved to: ', path);
-    //   }
-    // });
-
-
-
-    // Items.items(req.body,function(err, results) {
-    //   if (!err) { 
-    //     res.json(201);
-    //   } else {
-    //     res.json(err);
-    //   }
-    // });
+    Items.items(item, function(err, results) {
+      if (err) {
+        console.error('failed to add item to db');
+        res.json(err);
+      } else {
+        console.log('item added to db');
+        res.json(201);
+      }
+    });
   },
 };

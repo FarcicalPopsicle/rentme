@@ -35,10 +35,16 @@ angular.module('e-Commer.services', ['ngFileUpload'])
       // },
 
       addOne: function(item) {
-        console.log('inside factory - Item ');
+        console.log('inside factory - Item. The item is: ', item);
         Upload.upload({
           url: '/items/add',
-          data: {file: item.files[0], userid: item.userid}
+          data: {
+            file: item.files[0], 
+            userid: item.userid,
+            name: item.name,
+            description: item.description,
+            price: item.price,
+            }
         }).then(function (resp) {
             console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
         }, function (resp) {

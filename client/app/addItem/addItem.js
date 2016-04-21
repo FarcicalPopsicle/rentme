@@ -43,7 +43,9 @@ var last = {
 
 
   $scope.createItem = function() {
-    item = {id:$scope.user.id, item:$scope.itemForm};
+    item = $scope.itemForm;
+    item.userid = $scope.user.id;
+
     console.log('item created: ', item);
     $location.path('/addImage');
 
@@ -77,7 +79,7 @@ var last = {
     console.log('UPLOAD FILES CALLED');
     console.log('the files are: ', files);
     if (files && files.length) {
-      item.item.photos = files;
+      item.files = files;
     }
   };
 });

@@ -1,4 +1,4 @@
-angular.module('e-Commer.services', [])
+angular.module('e-Commer.services', ['ngFileUpload'])
   
   .factory('Search', function ($http) {
     return {
@@ -17,18 +17,35 @@ angular.module('e-Commer.services', [])
     }
   })
    
-  .factory('Item', function ($http) {
+  .factory('Item', function ($http, Upload) {
     return {
-      // add an item from a user
+
+      // add an item from a user: zombie code that worked, but didn't sent a bunch of info like blobURL
+      // addOne: function(item) {
+      //   console.log('Item factory: addOne called with item: ', item);
+      //   return $http({
+      //     method: 'POST',
+      //     url: '/items/add',
+      //     data: item
+      //   })
+      //   .then(function (resp) {
+      //     console.log(resp);
+      //     return resp;
+      //   });
+      // },
+
       addOne: function(item) {
-        console.log('Item factory: addOne called with item: ', item);
-        return $http({
-          method: 'POST',
+        console.log('inside factory - Item ');
+        Upload.upload({
           url: '/items/add',
-          data: item
-        })
-        .then(function (resp) {
-          return resp;
+          data: {file: item.files[0], userid: item.userid}
+        }).then(function (resp) {
+            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+        }, function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
         });
       },
 

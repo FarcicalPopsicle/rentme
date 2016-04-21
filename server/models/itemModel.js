@@ -2,6 +2,7 @@ var db = require('../db');
 
 module.exports = {
   items: function (item, callback) {
+    console.log('in itemModel, item: ', item);
     var query = 'insert into items (name, description, photo, price) values ("' 
       + item.name + '","'
       + item.description + '","'

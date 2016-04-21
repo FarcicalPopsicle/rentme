@@ -3,18 +3,7 @@ var Items = require('../models/itemModel.js');
 var fs = require('fs-extra');
 var mkdirp = require('mkdirp');
 
-
-// choose function below
 module.exports = {
-  // get: function (req, res, next) {
-  //   Items.items(function(err, results) {
-  //     if (!err) { 
-  //       res.json(201);
-  //     } else {
-  //       res.json(err);
-  //     }
-  //   });
-  // },
   addItem: function (req, res, next) {
     var file = req.files.file;
     var userId = req.body.userid;
@@ -34,17 +23,29 @@ module.exports = {
 
     var storeImage = function() {
       var oldPath = file.path;
-      console.log('old path: ', newPath, 'new path: ', newPath);
       fs.move(oldPath, newPath, function (err) {
         if (err) { 
           return console.error(err); 
         }
         item.photos.push(newPath);
+        addItemToDb();
+      });
+    };
+
+    var addItemToDb = function() {
+      Items.items(item, function(err, results) {
+        if (err) {
+          console.error('failed to add item to db');
+          res.json(err);
+        } else {
+          console.log('item added to db');
+          res.json(201);
+        }
       });
     };
 
     if (!fileExtensions.hasOwnProperty(fileType)) {
-      console.error('File type not handled. add new file types to itemController>addItem>fileExtensionString');
+      console.error('File type not handled. add new file types to itemController > addItem > fileExtensionString');
       return;
     }
 
@@ -59,17 +60,5 @@ module.exports = {
     };
 
     storeImage();
-
-    //db stuff
-
-    Items.items(item, function(err, results) {
-      if (err) {
-        console.error('failed to add item to db');
-        res.json(err);
-      } else {
-        console.log('item added to db');
-        res.json(201);
-      }
-    });
   },
 };

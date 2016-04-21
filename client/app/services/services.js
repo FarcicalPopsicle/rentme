@@ -44,7 +44,7 @@ angular.module('e-Commer.services', ['ngFileUpload'])
             name: item.name,
             description: item.description,
             price: item.price,
-            }
+          }
         }).then(function (resp) {
             console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
         }, function (resp) {

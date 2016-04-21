@@ -25,7 +25,7 @@ module.exports = {
         });
       }
 
-      var queryRentingItems = 'select i.id,i.name,i.description,i.photo,i.price,s.name from items i inner join items_renting ri on ri.item_Id = i.id inner join users s on ri.user_Id = s.id where ri.user_Id = '+userId;
+      var queryRentingItems = 'select i.id,i.name,i.description,i.photo,i.price,s.name as username from items i inner join items_renting ri on ri.item_Id = i.id inner join users s on ri.user_Id = s.id where ri.user_Id = '+userId;
       db.query(queryRentingItems, function(err, results) {
         if (err) {
           console.log('profile query err',err);

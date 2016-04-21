@@ -1,6 +1,5 @@
 var app = angular.module('e-Commer.search', ['ngMaterial'])
 .config(function($mdThemingProvider) {
-  
 
   var neonRedMap = $mdThemingProvider.extendPalette('red', {
     '500': '#10aeb2',
@@ -86,7 +85,6 @@ app.controller('SearchController', function ($scope,$location, $window, searchFa
     return a ? true : false;
   }
 
-
   $scope.showConfirm = function(ev,item) {
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog.confirm()
@@ -103,9 +101,6 @@ app.controller('SearchController', function ($scope,$location, $window, searchFa
       $scope.status = 'You decided to keep your debt.';
     });
   };
-
-
-
 
   $scope.open = function(){
     $mdDialog.show({

@@ -18,20 +18,24 @@ module.exports = {
     };
 
     var makePath = function() {
-      return './client/assets/images/' + userId + '/' + makeNewFileName();
+      var randomFileName = makeNewFileName();
+      return {
+        writePath: './client/assets/images/' + userId + '/' + randomFileName,
+        readPath: '../../assets/images/' + userId + '/' + randomFileName,
+      };
     };
 
     var storeImage = function() {
       var oldPath = file.path;
-      fs.move(oldPath, newPath, function (err) {
+      fs.move(oldPath, newPath.writePath, function (err) {
         if (err) { 
           return console.error(err); 
         }
-        item.photos.push(newPath);
+        item.photos.push(newPath.readPath);
         addItemToDb();
       });
     };
-
+    
     var addItemToDb = function() {
       Items.items(item, function(err, results) {
         if (err) {
@@ -43,14 +47,12 @@ module.exports = {
         }
       });
     };
-
+    
     if (!fileExtensions.hasOwnProperty(fileType)) {
       console.error('File type not handled. add new file types to itemController > addItem > fileExtensionString');
       return;
     }
-
     var newPath = makePath();
-
     var item = {
       userid: itemDetails.userid,
       name: itemDetails.name,
@@ -58,7 +60,6 @@ module.exports = {
       price: itemDetails.price,
       photos: [],
     };
-
     storeImage();
   },
 };

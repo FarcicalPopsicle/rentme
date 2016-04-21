@@ -25,7 +25,9 @@ app.controller('SearchController', function ($scope,$location, $window, searchFa
   $scope.user = Auth.user;
 
   searchFactory.getSearchItems({default:'default'}).then(function(items){
-    $scope.randItemsData = items;
+    $scope.randItemsData = items.randItems;
+    console.log('items from server: ', items);
+    // TODO add logic here to append reviews to randItemsData
   });
 
   $scope.logout = function (){
@@ -147,14 +149,6 @@ var last = {
     );
   };
 
-
-
-
-
-
-
-
-
 }).controller('subController', function($scope) {
   $scope.showBorA = true;
 });
@@ -168,7 +162,6 @@ app.factory('searchFactory', function($http) {
         url: '/api/getSearchItems',
         data: inputValue
       }).then(function(res) {
-        console.log(res.data);
         return res.data;
       });
     }
@@ -189,4 +182,3 @@ app.factory('searchFactory', function($http) {
       sendToSubCtrl: sendToSubCtrl
     }
   })
-

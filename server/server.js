@@ -1,5 +1,6 @@
 /* Server */
 var express = require("express");
+var session = require('express-session');
 var path = require("path");
 var app = express();
 var port = process.env.PORT || 7777;
@@ -19,6 +20,7 @@ passport.use(
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOrCreate(profile, function (err, user) {
+      console.log('create/find user: ', user);
       return done(err, user);
     });
   })
@@ -29,7 +31,16 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(user, done) {
-  done(null, user);
+  if (user) {
+    User.findUserById(user.id, function(err, results) {
+      if (err) { 
+        console.log('User not found :-(');
+        return done(err);
+      }
+      console.log('USER FOUND', user);
+      done(err, results);
+    });
+  }
 });
 
 /* Static */
@@ -39,6 +50,12 @@ app.use(express.static(path.join(__dirname, "../client")));
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
 app.use(passport.initialize());
 app.use(passport.session());
  

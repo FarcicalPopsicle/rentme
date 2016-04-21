@@ -11,7 +11,7 @@ var checkoutController = require('./checkoutController.js');
 
 module.exports = function(app, passport) {
 
-  app.post('/signup', authController.signup);
+  app.post('/signup', passport.authenticate('google'), authController.signup);
   app.post('/signin', authController.signin);
   app.post('/api/getSearchItems', homeController.search);
   app.post('/items/add', itemController.addItem);
@@ -28,6 +28,7 @@ module.exports = function(app, passport) {
   app.get('/auth/google/callback', 
     passport.authenticate('google', { failureRedirect: '/login' }),
     function(req, res) {
+      
       res.redirect('/');
     });
 

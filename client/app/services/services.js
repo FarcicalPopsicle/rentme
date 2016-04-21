@@ -27,7 +27,6 @@ angular.module('e-Commer.services', [])
           data: item
         })
         .then(function (resp) {
-          console.log(resp);
           return resp;
         });
       },
@@ -59,7 +58,6 @@ angular.module('e-Commer.services', [])
           data: user
         })
         .then(function (resp) {
-          console.log(resp);
           // this.user = resp.data;
           return resp;
         })
@@ -110,20 +108,18 @@ angular.module('e-Commer.services', [])
         });
       },
       //signin method for make a request and send the user info to the server
-      signin : function (user) {
-        console.log('Client---------',user);
-        return $http({
+      signin : function (callback) {
+        $http({
           method: 'POST',
-          url: '/signin',
-          data: user
+          url: '/signin'
         })
         .then(function (resp) {
           // resp.data.user[0]
-          console.log('User info',resp.data);
-          return resp.data;
+          callback(resp.data);
         })
         .catch(function(err){
           console.log(err);
+          return '404';
         });
       },
 

@@ -26,12 +26,19 @@ module.exports = {
       callback(err, results);
     });
   },
+  findUserById: function(userid, callback) {
+    var query = 'SELECT id, name FROM users WHERE id = ' + userid;
+    db.query(query, function(err, results) {
+      callback(err, results[0]);
+    });
+  },
   findOrCreate: function(profile, callback) {
-    var query = 'Select id, name from Users where googleid = "'+ profile.id +'" LIMIT 1';
+    var findQuery = 'Select id, name from Users where ';
+    var query = findQuery + 'googleid = "'+ profile.id +'" LIMIT 1';
     db.query(query, function(err, results) {
       if (err) { return callback(err); }
       if (results.length) {
-        callback(null, results);
+        callback(null, results[0]);
       } else {
         query = 'INSERT INTO Users SET ';
         query += 'googleid = "' + profile.id + '", ';
@@ -43,7 +50,7 @@ module.exports = {
           var query = 'Select id, name from Users where googleid = "'+ profile.id +'" LIMIT 1';
           db.query(query, function(err, results) {
             if (err) { return callback(err); }
-            callback(null, results);
+            callback(null, results[0]);
           });
         });
       }

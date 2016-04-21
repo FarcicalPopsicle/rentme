@@ -2,10 +2,10 @@
   <md-content>
     <body>
     <!-- <body ng-app="fileUpload" ng-controller="MyCtrl"> -->
-      <h4 ng-click="checkController()">Click this div to test the controller</h4>
+      <h4 ng-click="checkController()">Add a photo of your item:</h4>
       <button ngf-select="addImageToItem($files, $invalidFiles)" multiple
               accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-          Select Files</button>
+          Select Images</button>
       <br><br>
       <ul>
         <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}

@@ -41,43 +41,26 @@ var last = {
     );
   };
 
-
   $scope.createItem = function() {
     item = $scope.itemForm;
     item.userid = $scope.user.id;
-
-    console.log('item created: ', item);
     $location.path('/addImage');
-
   };
 
-  //DELETE THIS LATER DELETE THIS LATER
-  $scope.checkController = function() {
-    console.log('CONTROLLER WORKS', 'item is: ', item);
-  };
-
-  // $scope.addItem = function () {
-  //   var info = {id:$scope.user.id, item:$scope.itemForm};
-  //   Item.addOne(info)
-  //     .then(function () {
-  //       $scope.showSimpleToast();
-  //       $location.path('/addImage');
-  //     })
-  //     .catch(function (error) {
-  //       console.error(error);
-  //     });
-  // };
   $scope.uploadItem = function() {
-    console.log('upload item called');
-    Item.addOne(item);
-    item = {};
-    //add a redirect here
+    Item.addOne(item)
+      .then(function() {
+        $scope.showSimpleToast();
+        item = {};
+        $location.path('/profile');
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
   };
 
   $scope.addImageToItem = function(files) {
     $scope.files = files;
-    console.log('UPLOAD FILES CALLED');
-    console.log('the files are: ', files);
     if (files && files.length) {
       item.files = files;
     }

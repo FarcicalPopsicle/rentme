@@ -112,19 +112,19 @@ insert into items (name,description,price) values ('laptop','descLaptop',14),('t
 insert into address (street, number, city, postalcode) values ('Market St', 123, 'San Francisco',94102),('Market St', 12123, 'San Francisco',94102),('Montgomery St', 123, 'San Francisco',94101),('Kearny St', 246, 'San Francisco',94108),('Battery st',1015,'San Francisco',94111);
 
 -- add user Allice
-insert into users (name,email,address_id,phoneNumber,birthday,type,password) values ('Allice','allice@allice.com', (SELECT id FROM address WHERE postalcode=94111) ,48343432, '2015-6-9' ,'admin','password');
+insert into users (name,email,address_id,phoneNumber,birthday,type,password, googleid, givenname, familyname) values ('Allice','allice@allice.com', (SELECT id FROM address WHERE postalcode=94111) ,48343432, '2015-6-9' ,'admin','password', 1, 'John', 'Doe');
 
 -- add user John
-insert into users (name,email,address_id,phoneNumber,birthday,type,password) values ('John','john@john.com', (SELECT id FROM address WHERE postalcode=94101) ,48343432, '2015-6-9' ,'admin','password');
+insert into users (name,email,address_id,phoneNumber,birthday,type,password, googleid, givenname, familyname) values ('John','john@john.com', (SELECT id FROM address WHERE postalcode=94101) ,48343432, '2015-6-9' ,'admin','password', 2, 'John', 'Doe');
 
 -- add user Foo
-insert into users (name,email,address_id,phoneNumber,birthday,type,password) values ('Foo','john@john.com', (SELECT id FROM address WHERE postalcode=94102 and number = 123) ,48343432, '2015-6-9' ,'admin','password');
+insert into users (name,email,address_id,phoneNumber,birthday,type,password, googleid, givenname, familyname) values ('Foo','john@john.com', (SELECT id FROM address WHERE postalcode=94102 and number = 123) ,48343432, '2015-6-9' ,'admin','password', 3, 'John', 'Doe');
 
 -- add user Bob
-insert into users (name,email,address_id,phoneNumber,birthday,password) values ('Bob','bob@bob.com', (SELECT id FROM address WHERE postalcode=94108) ,48343432, '2015-6-9','password');
+insert into users (name,email,address_id,phoneNumber,birthday,password, googleid, givenname, familyname) values ('Bob','bob@bob.com', (SELECT id FROM address WHERE postalcode=94108) ,48343432, '2015-6-9','password', 4, 'John', 'Doe');
 
 -- add user Ann
-insert into users (name,email,address_id,phoneNumber,birthday,password) values ('Ann','ann@ann.com', (SELECT id FROM address WHERE postalcode=94102 and number = 12123) ,48343432, '2015-6-9','password');
+insert into users (name,email,address_id,phoneNumber,birthday,password, googleid, givenname, familyname) values ('Ann','ann@ann.com', (SELECT id FROM address WHERE postalcode=94102 and number = 12123) ,48343432, '2015-6-9','password', 5, 'John', 'Doe');
 
 -- add item_user relationship
 INSERT INTO user_items (user_Id, item_Id) VALUES (1, 1), (2, 2), (3, 3), (4, 4), (1, 5);

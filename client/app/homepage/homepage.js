@@ -24,20 +24,28 @@ app.controller('SearchController', function ($scope,$location, $window, searchFa
   $scope.checkOutCounter = 0;
   $scope.user = Auth.user;
 
-  searchFactory.getSearchItems({default:'default'}).then(function(items){
-    $scope.randItemsData = items;
+  searchFactory.getSearchItems({ default: 'default' }).then(function (items) {
+    $scope.randItemsData = items.randItems;
+    for (let i = 0; $scope.randItemsData[i]; i++) {
+      $scope.randItemsData[i].reviews = [];
+      for (let j = 0; items.randItems[j]; j++) {
+        if ($scope.randItemsData[i].name === items.reviews[j].item) {
+          $scope.randItemsData[i].reviews.push(items.reviews[j]);
+        }
+      }
+    }
   });
 
-  $scope.logout = function (){
+  $scope.logout = function () {
     Auth.signout();
-  }
+  };
  
-  $scope.addToCheckOut = function(item) {
+  $scope.addToCheckOut = function (item) {
     $scope.checkOutItems.push(item);
-    $scope.checkOutCounter++
-  }
+    $scope.checkOutCounter++;
+  };
 
-  $scope.processCheckOut = function() {
+  $scope.processCheckOut = function () {
     //Send the Cart to the server
     console.log('transfering you to paypal server..');
     var checkoutData = {id:$scope.user.id, items:$scope.checkOutItems};
@@ -147,14 +155,6 @@ var last = {
     );
   };
 
-
-
-
-
-
-
-
-
 }).controller('subController', function($scope) {
   $scope.showBorA = true;
 });
@@ -168,7 +168,6 @@ app.factory('searchFactory', function($http) {
         url: '/api/getSearchItems',
         data: inputValue
       }).then(function(res) {
-        console.log(res.data);
         return res.data;
       });
     }
@@ -189,4 +188,3 @@ app.factory('searchFactory', function($http) {
       sendToSubCtrl: sendToSubCtrl
     }
   })
-

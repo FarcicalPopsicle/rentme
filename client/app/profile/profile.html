@@ -39,6 +39,7 @@
     <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat="item in info.itemsRenting" id='profilePage'>
       <div flex-xs flex-gt-xs="50" layout="column"  >
         <md-card md-theme="{{'dark-light-green'}}" md-theme-watch flex="30">
+          <span class="md-subhead"><img src='{{item.photo}}'></img>{{item.photo}}</span>
           <md-card-title>
             <md-card-title-text>
               <span class="md-display-1">{{item.name}}</span>

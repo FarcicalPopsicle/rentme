@@ -31,6 +31,31 @@ module.exports = {
           console.log('profile query err',err);
         } else {
           resultObj.itemsRenting = results;
+        }
+      });
+
+      var queryFeedbackAsARenter = 'SELECT f.experience, f.rating, f.renter_or_rentee, '
+        + 'f.users_Id_rentee, f.users_Id_renter, u.name AS rentee, uu.name AS renter FROM '
+        + 'feedback f INNER JOIN users u ON u.id = users_Id_rentee INNER JOIN users uu ON '
+        + 'uu.id = users_Id_renter WHERE uu.id = 1;';
+      db.query(queryFeedbackAsARenter, function(err, results) {
+        if (err) {
+          return;
+        } else {
+          resultObj.renterFeedback = results;
+        }
+      });
+
+      var queryFeedbackAsARentee = 'SELECT f.experience, f.rating, f.renter_or_rentee, '
+        + 'f.users_Id_rentee, f.users_Id_renter, u.name AS renter, uu.name AS rentee FROM '
+        + 'feedback f INNER JOIN users u ON u.id = users_Id_renter INNER JOIN users uu ON '
+        + 'uu.id = users_Id_rentee WHERE uu.id = 1;';
+      db.query(queryFeedbackAsARentee, function(err, results) {
+        if (err) {
+          return;
+        } else {
+          resultObj.renteeFeedback = results;
+          console.log('resultOb: ', resultObj);
           callback(err, resultObj);
         }
       });

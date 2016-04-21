@@ -7,6 +7,7 @@ CREATE TABLE items (
   id int NOT NULL AUTO_INCREMENT,
   name varchar(50) NOT NULL,
   description varchar(200)  NOT NULL,
+  photo varchar(120) NOT NULL DEFAULT 'https://upload.wikimedia.org/wikipedia/commons/2/25/Icon-round-Question_mark.jpg',
   price int NOT NULL,
   availability boolean,
   PRIMARY KEY (ID)

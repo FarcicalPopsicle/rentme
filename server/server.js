@@ -20,7 +20,6 @@ passport.use(
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOrCreate(profile, function (err, user) {
-      console.log('create/find user: ', user);
       return done(err, user);
     });
   })
@@ -34,10 +33,8 @@ passport.deserializeUser(function(user, done) {
   if (user) {
     User.findUserById(user.id, function(err, results) {
       if (err) { 
-        console.log('User not found :-(');
         return done(err);
       }
-      console.log('USER FOUND', user);
       done(err, results);
     });
   }

@@ -49,8 +49,10 @@ var last = {
 
   $scope.uploadItem = function() {
     Item.addOne(item)
-    item = {};
-    $location.path('/profile');
+    .then(function() {
+        item = {};
+        $location.path('/profile');
+    });
   };
 
   $scope.addImageToItem = function(files) {

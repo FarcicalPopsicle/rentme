@@ -4,10 +4,12 @@ var fs = require('fs-extra');
 
 module.exports = {
   addItem: function (req, res, next) {
-    var file = req.files.file;
-    console.log('THE FILE: ', file);
+    if (req.files.file) {
+      var file = req.files.file;
+      var fileType = req.files.file.type;
+      console.log('THE FILE: ', file);
+    }
     var userId = req.body.userid;
-    var fileType = req.files.file.type;
     var itemDetails = req.body;
     var fileExtensions = {
       'image/jpeg': '.jpg',
@@ -49,11 +51,6 @@ module.exports = {
       });
     };
     
-    if (!fileExtensions.hasOwnProperty(fileType)) {
-      console.error('File type not handled. add new file types to itemController > addItem > fileExtensionString');
-      return;
-    }
-    var newPath = makePath();
     var item = {
       userid: itemDetails.userid,
       name: itemDetails.name,
@@ -62,6 +59,17 @@ module.exports = {
       photos: [],
     };
 
-    storeImage();
+    if (file) {
+      console.log('FOUND PHOTO');
+      if (!fileExtensions.hasOwnProperty(fileType)) {
+        console.error('File type not handled. add new file types to itemController > addItem > fileExtensionString');
+        return;
+      }
+      var newPath = makePath();
+      storeImage();
+    } else {
+      console.log('NO PHOTO');
+      addItemToDb();
+    }
   },
 };

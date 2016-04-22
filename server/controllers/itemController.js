@@ -11,6 +11,9 @@ module.exports = {
     var itemDetails = req.body;
     var fileExtensions = {
       'image/jpeg': '.jpg',
+      'image/png': '.png',
+      'image/gif': '.gif',
+      'image/bmp': '.bmp',
     };
 
     var makeNewFileName = function() {

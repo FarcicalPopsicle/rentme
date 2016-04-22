@@ -5,8 +5,6 @@ var Profile = require('../models/profileModel.js');
 module.exports = {
   getUserItems: function (req, res, next) {
     var params = req.query.id;
-    console.log('params', params);
-    
     Profile.profile(params, function(err, results) {
       if (!err) { 
         res.json(results);

@@ -54,12 +54,9 @@ module.exports = {
           });
         });
       }
-
     });
-  }
+  },
 };
 
-// insert into address (postalcode) values (94504);     
+// insert into address (postalcode) values (94504);
 // insert into users (name,email,address_id,phoneNumber,birthday,type,password,item_Id) values ('John','john@john.com', (SELECT id FROM address WHERE postalcode=94101) ,48343432, '2015-6-9' ,'admin','password', (SELECT id FROM items WHERE name='laptop'));
-
-

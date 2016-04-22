@@ -5,8 +5,7 @@ var NUM_ITEMS = 5;
 module.exports = {
   profile: function (userId, callback) {
     var resultObj = {};
-    
-    var queryRecentItems = 'select i.id,i.name,i.description,i.photo,i.price,s.name as user from items i inner join user_items ui on ui.item_Id = i.id inner join users s on ui.user_Id = s.id where ui.user_Id = '+userId;
+    var queryRecentItems = 'select i.id,i.name,i.description,i.photo,i.price,s.name as user from items i inner join user_items ui on ui.item_Id = i.id inner join users s on ui.user_Id = s.id where ui.user_Id = ' + userId;
     db.query(queryRecentItems, function(err, results) {
       if (err) {
         console.log('profile query err',err);
@@ -28,7 +27,8 @@ module.exports = {
       var queryRentingItems = 'select i.id,i.name,i.description,i.photo,i.price,s.name as username from items i inner join items_renting ri on ri.item_Id = i.id inner join users s on ri.user_Id = s.id where ri.user_Id = '+userId;
       db.query(queryRentingItems, function(err, results) {
         if (err) {
-          console.log('profile query err',err);
+          console.log('rented items query err',err);
+          callback(err, null);
         } else {
           resultObj.itemsRenting = results;
         }
@@ -37,25 +37,27 @@ module.exports = {
       var queryFeedbackAsARenter = 'SELECT f.experience, f.rating, f.renter_or_rentee, '
         + 'f.users_Id_rentee, f.users_Id_renter, u.name AS rentee, uu.name AS renter FROM '
         + 'feedback f INNER JOIN users u ON u.id = users_Id_rentee INNER JOIN users uu ON '
-        + 'uu.id = users_Id_renter WHERE uu.id = 1;';
+        + 'uu.id = users_Id_renter WHERE uu.id = ' + userId + ';';
       db.query(queryFeedbackAsARenter, function(err, results) {
         if (err) {
-          return;
+          console.log('renter feedback query err',err);
+          callback(err, null);
         } else {
           resultObj.renterFeedback = results;
+          // callback(err, resultObj);
         }
       });
 
       var queryFeedbackAsARentee = 'SELECT f.experience, f.rating, f.renter_or_rentee, '
         + 'f.users_Id_rentee, f.users_Id_renter, u.name AS renter, uu.name AS rentee FROM '
         + 'feedback f INNER JOIN users u ON u.id = users_Id_renter INNER JOIN users uu ON '
-        + 'uu.id = users_Id_rentee WHERE uu.id = 1;';
+        + 'uu.id = users_Id_rentee WHERE uu.id = ' + userId + ';';
       db.query(queryFeedbackAsARentee, function(err, results) {
         if (err) {
-          return;
+          console.log('rentee feedback query err', err);
+          callback(err, null);
         } else {
           resultObj.renteeFeedback = results;
-          console.log('resultOb: ', resultObj);
           callback(err, resultObj);
         }
       });

@@ -19,6 +19,7 @@ module.exports = function(app, passport) {
   app.post('/items/add', multipartyMiddleware, itemController.addItem);
   app.get('/api/getAllUserItem', profileController.getUserItems);
   app.post('/homepage/cart', checkoutController.setItems);
+  app.post('/api/reviewFeedback', profileController.setReviewAndFeedback);
 
   app.get('/auth/google', passport.authenticate('google', { 
     scope: [

@@ -98,7 +98,7 @@ CREATE TABLE feedback (
   users_Id_renter int NOT NULL,
   experience varchar(255) NOT NULL DEFAULT '',
   rating int(6) NOT NULL,
-  is_renter boolean NOT NULL,
+  is_rentee boolean NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (users_Id_rentee) REFERENCES users(id),
   FOREIGN KEY (users_Id_renter) REFERENCES users(id)

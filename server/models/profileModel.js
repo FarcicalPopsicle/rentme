@@ -65,5 +65,10 @@ module.exports = {
         }
       });
     });
-  }
+  },
+  rentedItemReturn: function (userId, itemId, callback) {
+    // insert feedback
+    // insert review
+    // delete item from renting items table
+  },
 };

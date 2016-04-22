@@ -19,21 +19,6 @@ angular.module('e-Commer.services', ['ngFileUpload'])
    
   .factory('Item', function ($http, Upload) {
     return {
-
-      // add an item from a user: zombie code that worked, but didn't sent a bunch of info like blobURL
-      // addOne: function(item) {
-      //   console.log('Item factory: addOne called with item: ', item);
-      //   return $http({
-      //     method: 'POST',
-      //     url: '/items/add',
-      //     data: item
-      //   })
-      //   .then(function (resp) {
-      //     console.log(resp);
-      //     return resp;
-      //   });
-      // },
-
       addOne: function(item) {
         console.log('inside factory - Item. The item is: ', item);
         Upload.upload({
@@ -81,7 +66,6 @@ angular.module('e-Commer.services', ['ngFileUpload'])
   })
 
   .factory('User', function ($http) {
-    // var user = {};
     return {
       user: user,
       getUser: function(){
@@ -95,9 +79,8 @@ angular.module('e-Commer.services', ['ngFileUpload'])
           data: user
         })
         .then(function (resp) {
-          // this.user = resp.data;
           return resp;
-        })
+        });
       },
 
       //deletes user from database
@@ -119,9 +102,9 @@ angular.module('e-Commer.services', ['ngFileUpload'])
         })
         .then(function (resp) {
           return resp.data;
-        })
+        });
       }
-    }
+    };
   })
 
 //@Author: Jovani

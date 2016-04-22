@@ -7,7 +7,9 @@ module.exports = {
     getAllRandom: function (callback) {
       var resultsObj = {};
 
-      var queryItems =  'select i.id,i.name,i.description,i.photo,i.price,i.availability,a.city from items i inner join user_items ui on ui.item_Id = i.id inner join users s on ui.user_Id = s.id inner join address a on a.id  = s.address_id ORDER BY RAND() LIMIT '+ NUM_ITEMS;
+      var queryItems =  'select i.id,i.name,i.description,i.photo,i.price,i.availability,a.city,'; 
+      queryItems += 'IFNULL((SELECT SUM(item_rating) / COUNT(*) FROM reviews WHERE items_id = i.id), 0) AS average_rating ';
+      queryItems += 'from items i inner join user_items ui on ui.item_Id = i.id inner join users s on ui.user_Id = s.id inner join address a on a.id  = s.address_id ORDER BY RAND() LIMIT '+ NUM_ITEMS;
       db.query(queryItems, function(err, results) {
         if (err) {
           console.log('item review err: ', err);

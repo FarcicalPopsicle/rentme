@@ -6,6 +6,7 @@ var mkdirp = require('mkdirp');
 module.exports = {
   addItem: function (req, res, next) {
     var file = req.files.file;
+    console.log('THE FILE: ', file);
     var userId = req.body.userid;
     var fileType = req.files.file.type;
     var itemDetails = req.body;
@@ -23,7 +24,7 @@ module.exports = {
     var makePath = function() {
       var randomFileName = makeNewFileName();
       return {
-        writePath: './client/assets/images/' + userId + '/' + randomFileName,
+        writePath: '../client/assets/images/' + userId + '/' + randomFileName,
         readPath: '../../assets/images/' + userId + '/' + randomFileName,
       };
     };
@@ -42,10 +43,8 @@ module.exports = {
     var addItemToDb = function() {
       Items.items(item, function(err, results) {
         if (err) {
-          console.error('failed to add item to db');
           res.json(err);
         } else {
-          console.log('item added to db');
           res.json(201);
         }
       });
@@ -63,6 +62,7 @@ module.exports = {
       price: itemDetails.price,
       photos: [],
     };
+
     storeImage();
   },
 };

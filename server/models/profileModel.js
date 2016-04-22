@@ -66,9 +66,42 @@ module.exports = {
       });
     });
   },
-  rentedItemReturn: function (userId, itemId, callback) {
+  rentedItemReturn: function (data, callback) {
+    var resultObj = {};
     // insert feedback
+    var queryInsertFeedback = 'INSERT INTO feedback (users_Id_rentee, users_Id_renter, experience,'
+      + ' rating, is_rentee) VALUES (' + data.rentee_id + ', ' + data.renter_id + ', \''
+      + data.feedback.experience + '\', ' + data.feedback.rating + ', 0);';
+    db.query(queryInsertFeedback, function(err, results) {
+      if (err) {
+        console.log('insert feedback query err',err);
+        return callback(err);
+      } else {
+        resultObj.feedback = results;
+      }
+    });
     // insert review
+    var queryInsertReview = 'INSERT INTO reviews (items_Id, users_Id, user_experience,'
+      + ' item_rating) VALUES (' + data.review.item_id + ', ' + data.renter_id + ', \''
+      + data.review.user_experience + '\', ' + data.review.item_rating + ');';
+    db.query(queryInsertReview, function (err, results) {
+      if (err) {
+        console.log('insert review query err',err);
+        return callback(err);
+      } else {
+        resultObj.review = results;
+      }
+    });
     // delete item from renting items table
+    var queryDeleteRentedItem = 'DELETE FROM items_renting WHERE user_Id = ' + data.renter_id + ';';
+    db.query(queryDeleteRentedItem, function (err, results) {
+      if (err) {
+        console.log('rented item deletion query err',err);
+        return callback(err);
+      } else {
+        resultObj.deletedItem = results;
+        callback(null, resultObj);
+      }
+    });
   },
 };

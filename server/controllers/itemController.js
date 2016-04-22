@@ -1,7 +1,6 @@
 // Sylvia
 var Items = require('../models/itemModel.js');
 var fs = require('fs-extra');
-var mkdirp = require('mkdirp');
 
 module.exports = {
   addItem: function (req, res, next) {

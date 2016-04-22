@@ -1,4 +1,4 @@
-<div id = "signup" style='padding: 40px;'> 
+<div id="signup" style='padding: 40px;'> 
   <h2>Profile</h2>
   <md-content>
   <div class="name" style="float: right;"><h3> Hello {{user.name}}</h3></div>
@@ -6,7 +6,7 @@
        <a href="#/homepage">Home</a>
    </md-button>
  <!-- <div class="memberSince">{{info.createdAt - new Date()}}</div> -->
- <h3>User Items</h3>
+ <h3>Your items for rent</h3>
 
   <div ng-cloak>
     <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat="item in info.items4rent" id='profilePage'>
@@ -18,9 +18,11 @@
               <span class="md-display-1">{{item.name}}</span>
               <span class="md-subhead">{{item.description}}</span>
               <div reviews></div>
+              <div class="md-title">Average Rating</div>
+              <div starrating></div>
             </md-card-title-text>
             <md-card-title-media>
-              <div class="md-media-md card-media" ayout-align="end center">{{item.price | currency}}</div>
+              <div class="md-media-md card-media" layout-align="end center">{{item.price | currency}}</div>
             </md-card-title-media>
           </md-card-title>
           <md-card-actions layout="row" layout-align="end center">
@@ -34,7 +36,7 @@
 </md-content>
 <!-- </div> -->
 <md-content>
-  <h3>User Renting Items</h3>
+  <h3>Items you are renting</h3>
   <div ng-cloak >
     <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat="item in info.itemsRenting" id='profilePage'>
       <div flex-xs flex-gt-xs="50" layout="column"  >
@@ -45,20 +47,19 @@
               <span class="md-display-1">{{item.name}}</span>
               <span class="md-title">description</span>
               <span class="md-subhead">{{item.description}}</span>
-              <!-- <span class="md-subhead">{{item.price}}</span> -->
+              <div reviews></div>
+              <div class="md-title">Average Rating</div>
+              <div starrating></div>
             </md-card-title-text>
             <md-card-title-media>
-              <div class="md-media-md card-media"></div>
+              <div class="md-media-md card-media" ayout-align="end center">{{item.price | currency}}</div>
             </md-card-title-media>
           </md-card-title>
           <md-card-actions layout="row" layout-align="end center">
-          <span class="md-subhead">{{item.price | currency}}</span>
-            <!-- <md-button ng-click='deleteItem(item)'>Delete Item</md-button> -->
+            <md-button class='md-primary md-raised' ng-click='deleteItem(item)'>Delete Item</md-button>
           </md-card-actions>
-       </md-card>
+        </md-card>
       </div>
-    </md-content>
-  </div>
   </md-content>
 
   <!-- Feedback -->

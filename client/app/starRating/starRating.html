@@ -1,0 +1,20 @@
+<ul class="rating-list">
+  <li class="rating-star" ng-repeat="Star in [1,2,3,4,5]">
+    <div ng-switch="item.average_rating >= Star">
+      <div ng-switch-when="true">
+        <img src="https://cdn4.iconfinder.com/data/icons/pretty_office_3/32/Star-Full.png" class="star" />
+      </div>
+      <div ng-switch-when="false">
+        <div ng-switch="item.average_rating > (Star-1)">
+          <div ng-switch-when="true">
+            <img src="https://cdn4.iconfinder.com/data/icons/pretty_office_3/32/Star-Half-Full.png" class="star" />
+          </div>
+          <div ng-switch-when="false">
+            <img src="https://cdn4.iconfinder.com/data/icons/pretty_office_3/32/Star-Empty.png" class="star" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+

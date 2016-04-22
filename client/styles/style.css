@@ -292,3 +292,20 @@ md-datepicker {
   background-color: white;
 }
 
+ul.rating-list {
+  list-style: none;
+  padding: 0;
+}
+
+li.rating-star {
+  display: inline-block;
+}
+
+li.rating-star div {
+  display: inline-block;
+}
+
+li.rating-star img {
+  width: 20px;
+}
+

@@ -25,10 +25,13 @@ module.exports = {
           });
         });
       }
-
-      var queryRentingItems = 'select i.id,i.name,i.description,i.photo,i.price,s.name as username, ';
-      queryRentingItems += 'IFNULL((SELECT SUM(item_rating) / COUNT(*) FROM reviews WHERE items_id = i.id), 0) AS average_rating';
-      queryRentingItems += ' from items i inner join items_renting ri on ri.item_Id = i.id inner join users s on ri.user_Id = s.id where ri.user_Id = ' + userId;
+      var queryRentingItems = 'SELECT i.id, i.name, i.description, i.photo, i.price, '
+        + 's.name AS username, o.name AS ownername, o.id AS ownerid, '
+        + 'IFNULL((SELECT SUM(item_rating) / COUNT(*) FROM reviews WHERE items_id = i.id), 0) '
+        + 'AS average_rating FROM items i INNER JOIN items_renting ri ON ri.item_Id = i.id '
+        + 'INNER JOIN users s ON ri.user_Id = s.id INNER JOIN user_items ui ON '
+        + 'i.id = ui.item_Id INNER JOIN users o ON ui.user_Id = o.id where ri.user_Id = '
+        + userId + ';';
       db.query(queryRentingItems, function(err, results) {
         if (err) {
           console.log('rented items query err',err);

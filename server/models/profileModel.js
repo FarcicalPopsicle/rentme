@@ -44,7 +44,6 @@ module.exports = {
           callback(err, null);
         } else {
           resultObj.renterFeedback = results;
-          // callback(err, resultObj);
         }
       });
 

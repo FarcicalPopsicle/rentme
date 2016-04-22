@@ -60,5 +60,57 @@
     </md-content>
   </div>
   </md-content>
-</div>
 
+  <!-- Feedback -->
+  <md-content>
+    <h3>Feedback from rentees</h3>
+    <div ng-cloak >
+      <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat="feedback in info.renterFeedback" id='profilePage'>
+        <div flex-xs flex-gt-xs="50" layout="column"  >
+          <md-card md-theme="{{'dark-light-green'}}" md-theme-watch flex="30">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-display-1">Rentee: {{feedback.rentee}}</span>
+                <span class="md-title">Experience</span>
+                <span class="md-subhead">{{feedback.experience}}</span>
+                <span class="md-subhead">Rating: {{feedback.rating}}</span>
+              </md-card-title-text>
+              <md-card-title-media>
+                <div class="md-media-md card-media"></div>
+              </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+              <span class="md-subhead">{{item.price | currency}}</span>
+            </md-card-actions>
+          </md-card>
+        </div>
+      </md-content>
+    </div>
+  </md-content>
+
+  <md-content>
+    <h3>Feedback from renters</h3>
+    <div ng-cloak >
+      <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat="feedback in info.renteeFeedback" id='profilePage'>
+        <div flex-xs flex-gt-xs="50" layout="column"  >
+          <md-card md-theme="{{'dark-light-green'}}" md-theme-watch flex="30">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-display-1">Renter: {{feedback.renter}}</span>
+                <span class="md-title">Experience</span>
+                <span class="md-subhead">{{feedback.experience}}</span>
+                <span class="md-subhead">Rating: {{feedback.rating}}</span>
+              </md-card-title-text>
+              <md-card-title-media>
+                <div class="md-media-md card-media"></div>
+              </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+              <span class="md-subhead">{{item.price | currency}}</span>
+            </md-card-actions>
+          </md-card>
+        </div>
+      </md-content>
+    </div>
+  </md-content>
+</div>

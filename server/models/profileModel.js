@@ -69,7 +69,7 @@ module.exports = {
       });
     });
   },
-  rentedItemReturn: function (data, callback) {
+  returnRentedItem: function (data, callback) {
     var resultObj = {};
     // insert feedback
     var queryInsertFeedback = 'INSERT INTO feedback (users_Id_rentee, users_Id_renter, experience,'

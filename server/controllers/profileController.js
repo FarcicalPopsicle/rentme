@@ -6,7 +6,7 @@ module.exports = {
   getUserItems: function (req, res, next) {
     var params = req.query.id;
     Profile.profile(params, function(err, results) {
-      if (!err) { 
+      if (!err) {
         res.json(results);
       } else {
         res.json(err);
@@ -14,7 +14,7 @@ module.exports = {
     });
   },
   setReviewAndFeedback: function (req, res, next) {
-    Profile.rentedItemReturn(req.body, function (err, results) {
+    Profile.returnRentedItem(req.body, function (err, results) {
       if (!err) {
         res.json(results);
       } else {

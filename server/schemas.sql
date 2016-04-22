@@ -107,7 +107,7 @@ CREATE TABLE feedback (
 -- Query for dummy data
 
 -- add items
-insert into items (name,description,price) values ('laptop','descLaptop',14),('tennis','descTennis',15),('phone','descPhone',10),('computer','descComputer',12),('watch','descWatch',9);
+insert into items (name,description,price, photo) values ('Sony Laptop','This sits well on your lap! You won\'t regret it!', 14, '../../assets/images/1/computer.jpg'), ('Tennis racket and balls','An entire tennis setup to play with a friend!', 15, '../../assets/images/2/tennis.jpg'), ('Phone', 'Older phone, but still good.', 10, '../../assets/images/3/phone.jpg'),('Desktop computer','Simple computer to play your favorite video games on!', 12, '../../assets/images/4/computer.jpg'), ('Wrist watch', 'A nice watch to tell time with!', 9, '../../assets/images/1/watch.jpg');
 
 -- add addresses
 insert into address (street, number, city, postalcode) values ('Market St', 123, 'San Francisco',94102),('Market St', 12123, 'San Francisco',94102),('Montgomery St', 123, 'San Francisco',94101),('Kearny St', 246, 'San Francisco',94108),('Battery st',1015,'San Francisco',94111);

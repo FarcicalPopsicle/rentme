@@ -38,7 +38,7 @@ module.exports = {
         }
       });
 
-      var queryFeedbackAsARenter = 'SELECT f.experience, f.rating, f.renter_or_rentee, '
+      var queryFeedbackAsARenter = 'SELECT f.experience, f.rating, f.is_rentee, '
         + 'f.users_Id_rentee, f.users_Id_renter, u.name AS rentee, uu.name AS renter FROM '
         + 'feedback f INNER JOIN users u ON u.id = users_Id_rentee INNER JOIN users uu ON '
         + 'uu.id = users_Id_renter WHERE uu.id = ' + userId + ';';
@@ -51,7 +51,7 @@ module.exports = {
         }
       });
 
-      var queryFeedbackAsARentee = 'SELECT f.experience, f.rating, f.renter_or_rentee, '
+      var queryFeedbackAsARentee = 'SELECT f.experience, f.rating, f.is_rentee, '
         + 'f.users_Id_rentee, f.users_Id_renter, u.name AS renter, uu.name AS rentee FROM '
         + 'feedback f INNER JOIN users u ON u.id = users_Id_renter INNER JOIN users uu ON '
         + 'uu.id = users_Id_rentee WHERE uu.id = ' + userId + ';';

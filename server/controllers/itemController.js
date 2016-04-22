@@ -1,16 +1,21 @@
 // Sylvia
 var Items = require('../models/itemModel.js');
 var fs = require('fs-extra');
-var mkdirp = require('mkdirp');
 
 module.exports = {
   addItem: function (req, res, next) {
-    var file = req.files.file;
+    if (req.files.file) {
+      var file = req.files.file;
+      var fileType = req.files.file.type;
+      console.log('THE FILE: ', file);
+    }
     var userId = req.body.userid;
-    var fileType = req.files.file.type;
     var itemDetails = req.body;
     var fileExtensions = {
       'image/jpeg': '.jpg',
+      'image/png': '.png',
+      'image/gif': '.gif',
+      'image/bmp': '.bmp',
     };
 
     var makeNewFileName = function() {
@@ -20,7 +25,7 @@ module.exports = {
     var makePath = function() {
       var randomFileName = makeNewFileName();
       return {
-        writePath: './client/assets/images/' + userId + '/' + randomFileName,
+        writePath: '../client/assets/images/' + userId + '/' + randomFileName,
         readPath: '../../assets/images/' + userId + '/' + randomFileName,
       };
     };
@@ -39,20 +44,13 @@ module.exports = {
     var addItemToDb = function() {
       Items.items(item, function(err, results) {
         if (err) {
-          console.error('failed to add item to db');
           res.json(err);
         } else {
-          console.log('item added to db');
           res.json(201);
         }
       });
     };
     
-    if (!fileExtensions.hasOwnProperty(fileType)) {
-      console.error('File type not handled. add new file types to itemController > addItem > fileExtensionString');
-      return;
-    }
-    var newPath = makePath();
     var item = {
       userid: itemDetails.userid,
       name: itemDetails.name,
@@ -60,6 +58,18 @@ module.exports = {
       price: itemDetails.price,
       photos: [],
     };
-    storeImage();
+
+    if (file) {
+      console.log('FOUND PHOTO');
+      if (!fileExtensions.hasOwnProperty(fileType)) {
+        console.error('File type not handled. add new file types to itemController > addItem > fileExtensionString');
+        return;
+      }
+      var newPath = makePath();
+      storeImage();
+    } else {
+      console.log('NO PHOTO');
+      addItemToDb();
+    }
   },
 };

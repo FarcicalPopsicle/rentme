@@ -1,4 +1,4 @@
-angular.module('e-Commer.services', [])
+angular.module('e-Commer.services', ['ngFileUpload'])
   
   .factory('Search', function ($http) {
     return {
@@ -17,17 +17,39 @@ angular.module('e-Commer.services', [])
     }
   })
    
-  .factory('Item', function ($http) {
+  .factory('Item', function ($http, Upload) {
     return {
-      // add an item from a user
       addOne: function(item) {
+        console.log('inside factory - Item. The item is: ', item);
+        Upload.upload({
+          url: '/items/add',
+          data: {
+            file: item.files[0], 
+            userid: item.userid,
+            name: item.name,
+            description: item.description,
+            price: item.price,
+          }
+        }).then(function (resp) {
+            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+        }, function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        });
+      },
+
+      addImages: function(image) {
+        console.log('add Images was called in services.js');
         return $http({
           method: 'POST',
-          url: '/items/add',
-          data: item
+          url: '/items/addItemImage',
+          data: image,
         })
-        .then(function (resp) {
-          return resp;
+        .then(function(res) {
+          console.log(res);
+          return res;
         });
       },
 
@@ -44,7 +66,6 @@ angular.module('e-Commer.services', [])
   })
 
   .factory('User', function ($http) {
-    // var user = {};
     return {
       user: user,
       getUser: function(){
@@ -58,9 +79,8 @@ angular.module('e-Commer.services', [])
           data: user
         })
         .then(function (resp) {
-          // this.user = resp.data;
           return resp;
-        })
+        });
       },
 
       //deletes user from database
@@ -82,9 +102,9 @@ angular.module('e-Commer.services', [])
         })
         .then(function (resp) {
           return resp.data;
-        })
+        });
       }
-    }
+    };
   })
 
 //@Author: Jovani

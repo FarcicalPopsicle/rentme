@@ -7,6 +7,8 @@ var homeController = require('./homepageController.js');
 var itemController = require('./itemController.js');
 var profileController = require('./profileController.js');
 var checkoutController = require('./checkoutController.js');
+multiparty = require('connect-multiparty');
+var multipartyMiddleware = multiparty();
 /* Routes */
 
 module.exports = function(app, passport) {
@@ -14,7 +16,7 @@ module.exports = function(app, passport) {
   app.post('/signup', passport.authenticate('google'), authController.signup);
   app.post('/signin', authController.signin);
   app.post('/api/getSearchItems', homeController.search);
-  app.post('/items/add', itemController.addItem);
+  app.post('/items/add', multipartyMiddleware, itemController.addItem);
   app.get('/api/getAllUserItem', profileController.getUserItems);
   app.post('/homepage/cart', checkoutController.setItems);
 
@@ -32,7 +34,7 @@ module.exports = function(app, passport) {
       res.redirect('/');
     });
 
-}
+};
 
 
 

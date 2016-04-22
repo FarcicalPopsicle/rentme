@@ -1,0 +1,24 @@
+<div id = "addImage" style='padding: 40px;'> 
+  <md-content>
+    <body>
+    <!-- <body ng-app="fileUpload" ng-controller="MyCtrl"> -->
+      <h4 ng-click="checkController()">Add a photo of your item:</h4>
+      <button ngf-select="addImageToItem($files, $invalidFiles)" multiple
+              accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+          Select Images</button>
+      <br><br>
+      <ul>
+        <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
+          <span class="progress" ng-show="f.progress >= 0">
+            <div style="width:{{f.progress}}%"  
+                ng-bind="f.progress + '%'"></div>
+          </span>
+        </li>
+        <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
+        </li> 
+      </ul>
+      {{errorMsg}}
+    </body>
+  </md-content>
+    <button ng-Click="uploadItem()">Rent your item!</button>
+</div>

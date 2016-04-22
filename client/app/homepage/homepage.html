@@ -78,6 +78,7 @@
   <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat='item in randItemsData' layout-align="center">
     <div flex-xs flex-gt-xs="40" layout="column"  >
       <md-card md-theme="{{'dark-light-green'}}" md-theme-watch flex="20">
+        <span class="md-subhead"><img src='{{item.photo}}' /></span>
         <md-card-title>
           <md-card-title-text>
             <span class="md-display-1">{{item.name}}</span>

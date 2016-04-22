@@ -1,5 +1,6 @@
 // David
 // Controller for adding items
+window.item = {};
 
 angular.module('e-Commer.addItem', ['ngMaterial'])
 .controller('addItemController', function ($scope, $window, $location, Item, Auth,$mdToast) {
@@ -20,6 +21,7 @@ var last = {
       .filter(function(pos) { return $scope.toastPosition[pos]; })
       .join(' ');
   };
+
   function sanitizePosition() {
     var current = $scope.toastPosition;
     if ( current.bottom && last.top ) current.top = false;
@@ -39,16 +41,22 @@ var last = {
     );
   };
 
+  $scope.createItem = function() {
+    item = $scope.itemForm;
+    item.userid = $scope.user.id;
+    $location.path('/addImage');
+  };
 
-  $scope.addItem = function () {
-    var info = {id:$scope.user.id, item:$scope.itemForm};
-    Item.addOne(info)
-      .then(function () {
-        $scope.showSimpleToast();
-        $location.path('/items');
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+  $scope.uploadItem = function() {
+    Item.addOne(item)
+    item = {};
+    $location.path('/profile');
+  };
+
+  $scope.addImageToItem = function(files) {
+    $scope.files = files;
+    if (files && files.length) {
+      item.files = files;
+    }
   };
 });

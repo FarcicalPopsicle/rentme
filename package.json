@@ -4,6 +4,7 @@
   "description": "ecommerce",
   "dependencies": {
     "body-parser": "^1.9.2",
+    "connect-multiparty": "^2.0.0",
     "ejs": "^2.4.1",
     "express": "^4.10.1",
     "express-session": "^1.13.0",

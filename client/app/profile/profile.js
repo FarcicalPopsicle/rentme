@@ -46,13 +46,19 @@ app.controller('profileCtrl', function($mdDialog, $scope, $location, profileFac,
               experience: $scope.renter_feedback,
             }
           }
-          console.log('sending feedback...', data);
+          $mdDialog.hide();
+          return $http({
+            method: 'POST', 
+            url: '/api/reviewFeedback', 
+            data: data 
+          }).then(function(res) {
+          });
         }
       }
     }).then(function() {
-      $scope.status('Your item has been returned');
+      // $scope.status('Your item has been returned');
     }, function() {
-      $scope.status = 'Item not returned';
+      // $scope.status = 'Item not returned';
     });
   };
 

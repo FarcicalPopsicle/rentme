@@ -1,17 +1,15 @@
-
-
 <div id = "signup" style='padding: 40px;'> 
   <md-content>
   <div class="checkOutFinal" style="float: right; padding-right: 10%">
     <h1>Hello {{checkOutItems.id}}</h1>
     <h2 id="currency-default">Total: {{getSum() | currency}}</h2><br>
-    <md-button class="md-primary md-raised" ng-click='processCheckOut()'>CheckOut
+    <md-button class="md-primary md-raised" ng-click='processCheckOut()'>
+      CheckOut
     </md-button>
   </div>
   <h3>Checkout</h3>
 
   <div ng-cloak class='center'>
-
     <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat='item in checkOutItems track by $index'>
       <div flex-xs flex-gt-xs="50" layout="column"  >
         <md-card md-theme="{{'dark-light-green'}}" md-theme-watch flex="20">

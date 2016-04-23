@@ -333,8 +333,9 @@ li.rating-star img {
   /*background-color: #2BC2FC !important;*/
 }
 
-.photo img {
-  height: 100px;
+.photo {
+  height: 250px;
+  width: auto;
   border: 5px solid #FFF;
 }
 

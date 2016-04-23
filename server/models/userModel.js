@@ -3,7 +3,7 @@ var db = require('../db/index.js');
 module.exports = {
   users: {
     get: function (user,callback) {
-      var query = 'Select id,name,email,address_id,birthday from users where name = "'+ user.username +'" and password = "'+user.password+'"';
+      var query = 'Select id,name,email,address_id,birthday, avatar from users where name = "'+ user.username +'" and password = "'+user.password+'"';
       db.query(query, function(err, results) {
         callback(err, results);
       });
@@ -33,6 +33,8 @@ module.exports = {
     });
   },
   findOrCreate: function(profile, callback) {
+    console.log('profile:', profile);
+    console.log('==========================');
     var findQuery = 'Select id, name from Users where ';
     var query = findQuery + 'googleid = "'+ profile.id +'" LIMIT 1';
     db.query(query, function(err, results) {
@@ -45,7 +47,8 @@ module.exports = {
         query += 'name = "' + profile.displayName + '", ';
         query += 'familyName = "' + profile.name.familyName + '", ';
         query += 'givenName = "' + profile.name.givenName + '", ';
-        query += 'email = "' + profile.emails[0].value + '" ';
+        query += 'email = "' + profile.emails[0].value + '", ';
+        query += 'avatar = "' + profile.photos[0].value + '" ';
         db.query(query, function(err, results) {
           var query = 'Select id, name from Users where googleid = "'+ profile.id +'" LIMIT 1';
           db.query(query, function(err, results) {

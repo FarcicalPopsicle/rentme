@@ -6,11 +6,20 @@ module.exports = {
   getUserItems: function (req, res, next) {
     var params = req.query.id;
     Profile.profile(params, function(err, results) {
-      if (!err) { 
+      if (!err) {
         res.json(results);
       } else {
         res.json(err);
       }
     });
-  }
+  },
+  setReviewAndFeedback: function (req, res, next) {
+    Profile.returnRentedItem(req.body, function (err, results) {
+      if (!err) {
+        res.json(results);
+      } else {
+        res.json(err);
+      }
+    });
+  },
 };

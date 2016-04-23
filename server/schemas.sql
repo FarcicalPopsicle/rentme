@@ -98,7 +98,7 @@ CREATE TABLE feedback (
   users_Id_renter int NOT NULL,
   experience varchar(255) NOT NULL DEFAULT '',
   rating int(6) NOT NULL,
-  renter_or_rentee boolean NOT NULL,
+  is_rentee boolean NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (users_Id_rentee) REFERENCES users(id),
   FOREIGN KEY (users_Id_renter) REFERENCES users(id)
@@ -134,7 +134,7 @@ INSERT INTO user_items (user_Id, item_Id) VALUES (1, 1), (2, 2), (3, 3), (4, 4),
 INSERT INTO reviews (items_Id, users_Id, user_experience, item_rating) VALUES (1, 1, 'good', 4), (1, 2, 'fine', 3), (4, 3, 'bad', 0), (5, 5, 'the worst', 1), (2, 3, 'eh', 5), (3, 1, 'I just don\'t understand', 3);
 
 -- add feedback
-INSERT INTO feedback (users_Id_rentee, users_Id_renter, experience, rating, renter_or_rentee) VALUES (1, 2, 'They were mean!', 0, 0), (2, 1, 'They were whinny!', 0, 1), (4, 3, 'Cool dude!', 5, 1), (3, 4, 'They were self-centered!', 2, 0), (3, 2, 'Good!', 3, 1), (1, 4, 'They were very mean!', 1, 0), (4, 1, 'Nicee!', 4, 1);
+INSERT INTO feedback (users_Id_rentee, users_Id_renter, experience, rating, is_rentee) VALUES (1, 2, 'They were mean!', 0, 0), (2, 1, 'They were whinny!', 0, 1), (4, 3, 'Cool dude!', 5, 1), (3, 4, 'They were self-centered!', 2, 0), (3, 2, 'Good!', 3, 1), (1, 4, 'They were very mean!', 1, 0), (4, 1, 'Nicee!', 4, 1);
 
 -- Query to retrieve items info.
 -- insert into users (name,email,address_id,phoneNumber,birthday,type,password,item_Id) values ('John','john@john.com', (SELECT id FROM address WHERE postalcode=94101) ,48343432, '2015-6-9' ,'admin','password', (SELECT id FROM items WHERE name='laptop'));

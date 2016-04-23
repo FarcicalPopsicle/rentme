@@ -27,7 +27,7 @@ app.controller('SearchController', function ($scope,$location, $window, searchFa
     $scope.randItemsData = items.randItems;
     for (let i = 0; $scope.randItemsData[i]; i++) {
       $scope.randItemsData[i].reviews = [];
-      for (let j = 0; items.randItems[j]; j++) {
+      for (let j = 0; items.reviews[j]; j++) {
         if ($scope.randItemsData[i].name === items.reviews[j].item) {
           $scope.randItemsData[i].reviews.push(items.reviews[j]);
         }

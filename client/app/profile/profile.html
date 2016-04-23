@@ -1,13 +1,12 @@
- 
+
   <div navigation></div>
-  <h2>Profile</h2>
   <md-content>
-    <div class="name" style="float: right;"><h3> Hello {{user.name}}</h3></div>
     <md-button class="md-primary md-fab md-fab-top-right" style='position: fixed;'>
          <a href="#/homepage">Home</a>
     </md-button>
     <!-- <div class="memberSince">{{info.createdAt - new Date()}}</div> -->
     <h3>Your items for rent</h3>
+    <hr>
     <div ng-cloak>
       <div class="item-list">
         <div class="item md-padding" ng-repeat="item in info.items4rent">

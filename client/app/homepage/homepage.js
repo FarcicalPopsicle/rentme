@@ -27,7 +27,7 @@ app.controller('SearchController', function ($scope,$location, $window, searchFa
     $scope.randItemsData = items.randItems;
     for (let i = 0; $scope.randItemsData[i]; i++) {
       $scope.randItemsData[i].reviews = [];
-      for (let j = 0; items.randItems[j]; j++) {
+      for (let j = 0; items.reviews[j]; j++) {
         if ($scope.randItemsData[i].name === items.reviews[j].item) {
           $scope.randItemsData[i].reviews.push(items.reviews[j]);
         }
@@ -45,14 +45,16 @@ app.controller('SearchController', function ($scope,$location, $window, searchFa
   };
 
   $scope.processCheckOut = function () {
-    //Send the Cart to the server
+    // Send the Cart to the server
     console.log('transfering you to paypal server..');
-    var checkoutData = {id:$scope.user.id, items:$scope.checkOutItems};
-    searchFactory.sendToSubCtrl(checkoutData).then(function(response){
+    var checkoutData = { id: $scope.user.id, items: $scope.checkOutItems };
+    searchFactory.sendToSubCtrl(checkoutData).then(function (response) {
+      console.log(response);
     });
     $scope.showSimpleToast();
+    $scope.checkOutItems = [];
     $location.path('/homepage');
-  }
+  };
 
   $scope.getSum = function() {
     var i = 0,

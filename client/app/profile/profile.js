@@ -1,21 +1,21 @@
 var app = angular.module('e-Commer.profile', []);
 
-app.controller('profileCtrl', function($mdDialog, $scope, $location, profileFac, Auth) {
+app.controller('profileCtrl', function ($mdDialog, $scope, $location, profileFac, Auth) {
   $scope.info = {};
 
   $scope.user = Auth.user;
   // console.log($scope.user.id); // undefind
-  profileFac.getUser($scope.user.id).then(function(items){
+  profileFac.getUser($scope.user.id).then(function (items) {
     $scope.info = items;
   });
 
-  $scope.returnItem = function(ev,item) {
+  $scope.returnItem = function (ev, item) {
     // Appending dialog to document.body to cover sidenav in docs app
     $mdDialog.show({
       preserveScope: true,  // do not forget this if use parent scope
       templateUrl: '/app/profile/returnItemTemplate.html',
       targetEvent: event,
-      clickOutsideToClose:true,
+      clickOutsideToClose: true,
       controller: function DialogController($scope, $mdDialog, $http) {
         $scope.item = item;
         $scope.rating_item = 1;
@@ -27,12 +27,12 @@ app.controller('profileCtrl', function($mdDialog, $scope, $location, profileFac,
           { label: '2', value: 2 },
           { label: '3', value: 3 },
           { label: '4', value: 4 },
-          { label: '5', value: 5 }
+          { label: '5', value: 5 },
         ];
-        $scope.closeDialog = function() {
+        $scope.closeDialog = function () {
           $mdDialog.hide();
-        }
-        $scope.returnAndSendFeedback = function() {
+        };
+        $scope.returnAndSendFeedback = function () {
           var data = {
             renter_id: Auth.user.id,
             rentee_id: item.ownerid,
@@ -44,37 +44,36 @@ app.controller('profileCtrl', function($mdDialog, $scope, $location, profileFac,
             feedback: {
               rating: $scope.rating_renter,
               experience: $scope.renter_feedback,
-            }
-          }
+            },
+          };
           $mdDialog.hide();
           return $http({
-            method: 'POST', 
-            url: '/api/reviewFeedback', 
-            data: data 
-          }).then(function(res) {
+            method: 'POST',
+            url: '/api/reviewFeedback',
+            data: data,
+          }).then(function ( res ) {
           });
-        }
-      }
-    }).then(function() {
+        };
+      },
+    }).then(function () {
       // $scope.status('Your item has been returned');
-    }, function() {
+    }, function () {
       // $scope.status = 'Item not returned';
     });
   };
-
 });
 
-app.factory('profileFac', function($http) {
+app.factory('profileFac', function ($http) {
   return {
-    getUser: function(user) {
+    getUser: function (user) {
       return $http({
         method: 'GET',
         url: '/api/getAllUserItem',
-        params: {id:user}
+        params: { id: user },
       })
       .then(function (resp) {
         return resp.data;
       });
-    }
+    },
   };
 });

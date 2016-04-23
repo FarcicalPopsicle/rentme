@@ -314,3 +314,31 @@ li.rating-star img {
   width: 20px;
 }
 
+.outerItemsContainer {
+  /*flex-wrap: wrap;*/
+}
+
+.itemsContainer {
+  /*flex-wrap: wrap;*/
+}
+
+.itemsOwned {
+  justify-content: space-between;
+  background-color: #00ADEE;
+  height: 400px;
+  overflow: auto;
+}
+
+.deleteButton {
+  /*background-color: #2BC2FC !important;*/
+}
+
+.photo {
+  height: 250px;
+  width: auto;
+  border: 5px solid #FFF;
+}
+
+.price {
+  text-align: right;
+}

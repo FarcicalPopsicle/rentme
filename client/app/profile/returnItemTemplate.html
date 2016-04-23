@@ -1,0 +1,53 @@
+<md-dialog flex="90" aria-label="Return Item" class="return-item-dialog" ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Return {{ item.name }}</h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <h3>Rate {{ item.name }}</h3>
+        <md-radio-group ng-model="rating_item" class="md-primary">
+          <div layout="row" layout-align="center">
+            <div layout="column" ng-repeat="d in values" flex>
+              <div layout-align="center" flex>{{ d.label }}</div>
+              <md-radio-button aria-label="{{ d.label }}" layout-align="center" ng-value="d.value" flex>
+              </md-radio-button>
+            </div>
+          </div>
+        </md-radio-group>
+        <md-input-container class="md-block">
+          <label>Comments</label>
+          <textarea ng-model="user_experience" md-maxlength="255" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+      </div>
+      <div class="md-dialog-content">
+        <h3>Rate {{ item.ownername }}</h3>
+
+        <md-radio-group ng-model="rating_renter" class="md-primary">
+          <div layout="row" layout-align="center">
+            <div layout="column" ng-repeat="d in values" flex>
+              <div layout-align="center" flex>{{ d.label }}</div>
+              <md-radio-button aria-label="{{ d.label }}" layout-align="center" ng-value="d.value" flex>
+              </md-radio-button>
+            </div>
+          </div>
+        </md-radio-group>
+        <md-input-container class="md-block">
+          <label>Comments</label>
+          <textarea ng-model="renter_feedback" md-maxlength="255" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="closeDialog()">
+        Cancel
+      </md-button>
+      <md-button ng-click="returnAndSendFeedback()" style="margin-right:20px;">
+        Return Item
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

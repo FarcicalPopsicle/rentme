@@ -147,7 +147,7 @@ angular.module('e-Commer.services', ['ngFileUpload'])
       },
       signout: function () {
         $window.localStorage.removeItem('com.e-Commer');
-        $location.path('/homepage');
+        $window.location = '/signout';
       }
     }
   });

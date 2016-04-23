@@ -14,6 +14,7 @@ module.exports = {
       res.json('404');
     }
   },
+  
   signup: function (req, res, next) {
     var user = req.body;
     console.log('User',user);
@@ -25,5 +26,11 @@ module.exports = {
         res.json(err);
       }
     });
+  },
+
+  signout: function (req, res, next) {
+    delete req.user;
+    req.session.destroy();
+    res.redirect('/');
   }
 };

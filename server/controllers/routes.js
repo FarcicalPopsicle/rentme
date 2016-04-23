@@ -15,6 +15,7 @@ module.exports = function(app, passport) {
 
   app.post('/signup', passport.authenticate('google'), authController.signup);
   app.post('/signin', authController.signin);
+  app.get('/signout', authController.signout);
   app.post('/api/getSearchItems', homeController.search);
   app.post('/items/add', multipartyMiddleware, itemController.addItem);
   app.get('/api/getAllUserItem', profileController.getUserItems);

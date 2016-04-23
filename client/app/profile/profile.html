@@ -9,24 +9,26 @@
  <h3>Your items for rent</h3>
 
   <div ng-cloak>
-    <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat="item in info.items4rent" id='profilePage'>
-      <div flex-xs flex-gt-xs="50" layout="column"  >
-        <md-card md-theme="{{'dark-light-green'}}" md-theme-watch flex="30">
+    <md-content class="md-padding outerItemsContainer" layout-xs="column" layout="column" id='profilePage'>
+      <!-- ng-repeat="item in info.items4rent"> -->
+      <div class="itemsContainer" flex-xs flex-gt-xs="50" layout-sm="column" layout="row"  >
+        <md-card class="itemsOwned" 
+          ng-repeat="item in info.items4rent" md-theme-watch flex="33">
           <md-card-title>
             <md-card-title-text>
-              <span class="md-subhead"><img src='{{item.photo}}' /></span>
+              <span class="md-subhead photo"><img src='{{item.photo}}' /></span>
               <span class="md-display-1">{{item.name}}</span>
               <span class="md-subhead">{{item.description}}</span>
               <div reviews></div>
               <div class="md-title">Average Rating</div>
               <div starrating></div>
             </md-card-title-text>
-            <md-card-title-media>
-              <div class="md-media-md card-media" layout-align="end center">{{item.price | currency}}</div>
+            <md-card-title-media layout="row" layout-align="end start">
+              <div class="md-media-md card-media price">{{item.price | currency}}</div>
             </md-card-title-media>
           </md-card-title>
           <md-card-actions layout="row" layout-align="end center">
-            <md-button class='md-primary md-raised' ng-click='deleteItem(item)'>Delete Item</md-button>
+            <md-button class='md-raised deleteButton' ng-click='deleteItem(item)'>Delete Item</md-button>
           </md-card-actions>
        </md-card>
       </div>

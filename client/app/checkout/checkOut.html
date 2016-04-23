@@ -11,7 +11,7 @@
 
   <div ng-cloak>
     <div class="item-list">
-      <div class="item md-padding" ng-repeat='item in randItemsData'>
+      <div class="item md-padding" ng-repeat='item in checkOutItems track by $index'>
         <div class="title-bar">
           <div class="title">{{item.name}}</div>
           <div class="star-rating" starrating></div>
@@ -23,7 +23,7 @@
           <p>{{item.description}}</p>
           <div class="decision-bar">
             <p class="price">{{item.price | currency}}/week</p>
-            <md-button ng-click='addToCheckOut(item)' class="add-to-cart-button md-primary md-raised button">Add to cart</md-button>
+            <md-button ng-click='addToCheckOut(item)' class="add-to-cart-button md-primary md-raised button">Remove</md-button>
           </div>
           <div class="reviews">
             <div reviews></div>

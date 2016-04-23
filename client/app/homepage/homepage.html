@@ -75,12 +75,34 @@
   <!-- Image render -->
 
 <div ng-cloak>
-  <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat='item in randItemsData' layout-align="center">
-    <div flex-xs flex-gt-xs="40" layout="column"  >
-      <md-card md-theme="{{'dark-light-green'}}" md-theme-watch flex="20">
-        <span class="md-subhead"><img src='{{item.photo}}' /></span>
-        <md-card-title>
-          <md-card-title-text>
+  <div class="item-list">
+    <div class="item md-padding" ng-repeat='item in randItemsData'>
+      <div class="title-bar">
+        <div class="title">{{item.name}}</div>
+        <div class="star-rating" starrating></div>
+      </div>
+      <div class="image-container">
+        <img class="image" src="{{item.photo}}" />
+      </div>
+      <div class="description">
+        <p>{{item.description}}</p>
+        <div class="decision-bar">
+          <p class="price">{{item.price | currency}}/week</p>
+          <md-button ng-click='addToCheckOut(item)' class="add-to-cart-button md-primary md-raised button">Add to cart</md-button>
+        </div>
+        <div class="reviews">
+          <div reviews></div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="item-list">
+  <div class="item-card" ng-repeat='item in randItemsData' layout-align="center">
+    <div class="item">
+        <span class="md-subhead"><img class="item-image" src='{{item.photo}}' /></span>
+        <div class="item-description">
+          <div class="item-text">
             <span class="md-display-1">{{item.name}}</span>
             <span class="md-title">description</span>
             <span class="md-subhead">{{item.description}}</span>
@@ -88,15 +110,10 @@
             <div reviews></div>
             <div class="md-title">Average Rating</div>
             <div starrating></div>
-          </md-card-title-text>
+          </div>
           <md-card-title-media>
             <div class="md-media-md card-media" layout-align="end center">{{item.price | currency}}</div>
           </md-card-title-media>
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="end center">
+        </div>
           <md-button ng-click='addToCheckOut(item)' class="md-primary md-raised">Add to cart</md-button>
-        </md-card-actions>
-      </md-card>
-    </div>
-  </md-content>
-</div>
+  </div> -->

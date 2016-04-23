@@ -1,16 +1,16 @@
 ## About
 
-RentMe. is a web application that allows a user to look for items to rent according to location and availability. Examples: 1) user books a surf trip to San Diego. Instead of paying for the cost of transporting a surfboard on a plane, they use RentMe. to look for a board in San Diego for the specific dates of their trip. 2) User has items they are not currently using, e.g., tent, bike, party costumes, storage space, etc., which they can make available on RentMe.
+RentMe. is a web application that allows a user to rent items from other users in their location and availability. Going on trip and want to bicycle around, but don't want to ship your bicycle? Rent one from someone in the are! Alternatively, have an item (e.g., tent, bike, party costumes, etcetera) that is just taking up space in the garage? Use RentMe. to make money on it by renting it out!
 
-## RentMe is built using:
+## RentMe Tech:
 
 Front-End: Angular.js + Angular Material
 Back-End: Node + Express
-Database: mySQL
+Database: MySQL
 
 Front-End files are organised according to views / templates, Back-End files are organised according to functionality (controllers, models, etc.). 
 
-## User journey:
+## User Journey:
 
 Below is an illustration of a potential user journey. For some parts, steps do not necessarily follow each other. 
 

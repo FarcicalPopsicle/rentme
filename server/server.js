@@ -12,11 +12,23 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 //Must create this!
 var apiKeys = require('./utility/apikeys.js');
 
+if (process.env.SERVER === 'LIVE') {
+  var callbackServer = 'http://faunadex.willfulbard.com';
+  if (port !== 80) {
+    callbackServer += ':' + port;
+  }
+} else {
+  var callbackServer = 'http://localhost';
+  if (port !== 80) {
+    callbackServer += ':' + port;
+  }
+}
+
 passport.use(
   new GoogleStrategy({
     clientID: apiKeys.google.key,
     clientSecret: apiKeys.google.secret,
-    callbackURL: 'http://localhost:' + port + '/auth/google/callback'
+    callbackURL: callbackServer + '/auth/google/callback'
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOrCreate(profile, function (err, user) {

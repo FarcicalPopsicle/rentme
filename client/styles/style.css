@@ -478,3 +478,10 @@ li.rating-star img {
 .price {
   text-align: right;
 }
+
+.item.feedback {
+  height: 200px;
+}
+
+
+

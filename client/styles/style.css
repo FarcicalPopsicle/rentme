@@ -481,7 +481,20 @@ li.rating-star img {
 
 .item.feedback {
   height: 200px;
+} 
+
+#signInLogo, #googleSignInButton, #googleSignInButton img {
+  margin: auto auto; 
+  display: block;
 }
 
+#googleSignInButton {
+  height: 50px,
+  width: auto;
+}
 
-
+#motto {
+  color: #005D80;
+  font-family: Sans-Serif, Arial;
+  font-style: normal;
+}

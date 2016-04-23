@@ -16,7 +16,7 @@ h1 {
 }
 
 .add-to-cart-button {
-  background: #01A3DD;
+  background: #FFB600 !important;
 }
 
 
@@ -40,7 +40,7 @@ h1 {
   width: 92%;
   height: 83px;
   overflow: scroll;
-  background: #9CDFF7;
+  background: #2BC2FC;
   border-style: inset;
   position: absolute;
   bottom: 5px;
@@ -63,7 +63,7 @@ h1 {
 .title-bar {
   width: 100%;
   display: inline-block;
-  font-size: 1.1em !important;
+  font-size: 1em !important;
   height: 40px;
 }
 
@@ -106,15 +106,37 @@ h1 {
   padding: 3px;
   margin: 3px;
   border-radius: 5px;
-
 }
 
+.top-bar {
+  color: #FF8500 !important;
+}
+
+.navigation {
+  background: #005D80 !important;
+}
+
+.search-button {
+  background: #FFB600 !important;
+}
+
+.form {
+  font: #173CFF !important;
+}
 .item-card {
   height: 555px;
 }
 
+.username-link {
+  width: 200px !important;
+}
+
 .item-description {
   height: 200px;
+}
+
+.navigation a {
+  color: #07BBFF !important;
 }
 
 .item .image {
@@ -125,11 +147,15 @@ h1 {
   max-height: 200px;
   padding: 5px;
   position: relative;
+  border-style: solid;
+  border: #CC2300;
 }
 
 #logo {
   width: 111px;
   height: 111px;
+  border: solid #00ACEE;
+  border-radius: 5px;
 }
 
 .navigation {
@@ -149,6 +175,7 @@ h1 {
 }
 
 .navigation li a {
+  font-weight: bold;
   width: 100px;
   height: 20px;
   line-height: 20px;

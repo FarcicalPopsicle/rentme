@@ -23,6 +23,8 @@
       <nav class="navigation">
         <ul>
           <li>
+                <img id="logo" src='./assets/images/logo.png' alt="RentMe" />
+          </li>
             <!-- <a href="#/homepage/cart" > -->
               <span>
                <!-- {{itemCount}}  -->
@@ -37,7 +39,6 @@
             <a href="#/profile">Profile</a>
           </li>
 
-
 <!--           <li>
             <a href="" ng-click="open()">Test</a>
           </li>
@@ -48,7 +49,7 @@
           </li>
 
           <li style="float: right;">
-            <a href="#/profile">{{user.name | uppercase}}</a>
+            <a class="username-link" href="#/profile">{{user.name | uppercase}}</a>
           </li>          
         </ul>
       </nav>
@@ -69,7 +70,7 @@
           <input type="text" ng-model = 'item'/>
         </md-input-container>
       <!-- <button> Search </button> -->
-      <md-button type='submit' class="md-primary md-raised" layout-align="end center">Search</md-button>
+      <md-button type='submit' class="md-primary md-raised search-button" layout-align="end center">Search</md-button>
     </form>
   </div>
   <!-- Image render -->
@@ -96,24 +97,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="item-list">
-  <div class="item-card" ng-repeat='item in randItemsData' layout-align="center">
-    <div class="item">
-        <span class="md-subhead"><img class="item-image" src='{{item.photo}}' /></span>
-        <div class="item-description">
-          <div class="item-text">
-            <span class="md-display-1">{{item.name}}</span>
-            <span class="md-title">description</span>
-            <span class="md-subhead">{{item.description}}</span>
-            <span class="md-subhead">{{item.city}}</span>
-            <div reviews></div>
-            <div class="md-title">Average Rating</div>
-            <div starrating></div>
-          </div>
-          <md-card-title-media>
-            <div class="md-media-md card-media" layout-align="end center">{{item.price | currency}}</div>
-          </md-card-title-media>
-        </div>
-          <md-button ng-click='addToCheckOut(item)' class="md-primary md-raised">Add to cart</md-button>
-  </div> -->

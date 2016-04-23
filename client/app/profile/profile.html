@@ -52,11 +52,11 @@
               <div starrating></div>
             </md-card-title-text>
             <md-card-title-media>
-              <div class="md-media-md card-media" ayout-align="end center">{{item.price | currency}}</div>
+              <div class="md-media-md card-media" layout-align="end center">{{item.price | currency}}</div>
             </md-card-title-media>
           </md-card-title>
           <md-card-actions layout="row" layout-align="end center">
-            <md-button class='md-primary md-raised' ng-click='deleteItem(item)'>Delete Item</md-button>
+            <md-button class='md-primary md-raised' ng-click='returnItem($event, item)'>Return Item</md-button>
           </md-card-actions>
         </md-card>
       </div>
